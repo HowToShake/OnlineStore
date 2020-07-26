@@ -5,7 +5,7 @@ export const TopBar = (props) => {
     console.log(props);
 
     return (
-        <Navbar  expand="lg" variant="light" style={{backgroundColor: '#e0e0e0'}}>
+        <Navbar expand="lg" variant="light" style={{backgroundColor: '#e0e0e0'}}>
         <Navbar.Brand href="#home">Online Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

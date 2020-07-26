@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import { countReducer } from '../components/TopBar/reducer'
+import combineReducers from '../reducers/index'
 
-export const store = createStore(countReducer);
+export const store = createStore(combineReducers);

@@ -1,4 +1,4 @@
-export const countReducer = (state = 0, action) => {
+export const topBarReducer = (state = 0, action) => {
     switch (action.type) {
       case "INCREMENT":
         return state + 1;
