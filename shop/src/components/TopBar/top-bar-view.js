@@ -1,11 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Button } from 'antd'
-import { HomeOutlined } from '@ant-design/icons'
+import { Button, Input, Select } from 'antd'
+import { HomeOutlined, UserOutlined } from '@ant-design/icons'
 
 export const TopBar = (props) => {
 
     console.log(props.count);
+
+    const { Option } = Select;
+
+    const buttonStyle =  "d-flex flex-row align-items-center";
+
 
     const handleSearchBox = (e) => {
         console.log(e.target.value)
@@ -17,18 +22,32 @@ export const TopBar = (props) => {
                 <Button className="d-flex flex-column justify-content-center">Shop Online</Button>
             </Link>
 
-            <form className="d-flex flex-row flex-nowrap justify-content-center align-items-center" style={{ minHeight: '60%', minWidth: '50%'}}>
-                <input  className="form-control" type="text" placeholder="Search" onChange={e => handleSearchBox(e)} style={{minWidth: '80px'}}/>
-                <button type="submit" className="btn btn-secondary ml-1 text-center" >Submit</button>
-            </form>
+            <div>
+            <Input.Group className="site-input-group-wrapper">
+                <Select defaultValue="All">
+                    <Option value="All">All</Option>
+                    <Option value="Cars">Cars</Option>
+                </Select>
 
-            <Link to="/register">
-                <button className="btn btn-primary">Register</button>
-            </Link>
+                <Input.Search
+                    style={{ width: '40vw' }} 
+                    placeholder="input search text"
+                    enterButton="Search"
+                    onChange={e => handleSearchBox(e)} />
+            </Input.Group>
+            </div>
 
-            <Link to="/">
-                <Button><HomeOutlined /></Button>
-            </Link>
+            <div className="d-flex flex-row justify-content-center align-items-center">
+
+                <Link to="/">
+                    <Button className={buttonStyle} icon={<HomeOutlined />}>Home</Button>
+                </Link>
+
+                <Link to="/register">
+                    <Button className={buttonStyle} icon={<UserOutlined />}>Register</Button>
+                </Link>
+
+            </div>
 
 
         </div>
