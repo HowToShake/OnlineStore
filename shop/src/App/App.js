@@ -1,22 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import 'antd/dist/antd.css';
 import React from 'react'
-import { Provider } from 'react-redux'
 import TopBar from '../components/TopBar/top-bar-connected'
-import { store } from '../redux/configure-store'
-import LandingPage from '../components/LandingPage/landing-page-view';
 import AppStyle from'./App.module.scss'
-
-import Register from '../components/register/register-view'
-import { Link, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ROUTES, { RenderRoutes } from '../routes';
 
 const App = () => {
     return(
         <div styles={AppStyle.App}>
-            <Provider store={store}>
-                <TopBar />
-                <RenderRoutes routes = {ROUTES} />
-            </Provider>
+            <TopBar />
+            <RenderRoutes routes = {ROUTES} />
         </div>
     )
 }
