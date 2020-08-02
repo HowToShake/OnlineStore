@@ -8,12 +8,10 @@ export const TopBar = (props) => {
     console.log(props);
 
     const { Option } = Select;
-
     const buttonStyle =  "d-flex flex-row align-items-center";
 
-
-    const handleSearchBox = (e) => {
-        console.log(e.target.value)
+    const handleSearchBoxField = (e) => {
+        props.handleSearchBox(e.target.value);
     }
 
     return (
@@ -33,7 +31,8 @@ export const TopBar = (props) => {
                     style={{ width: '40vw' }} 
                     placeholder="input search text"
                     enterButton="Search"
-                    onChange={e => handleSearchBox(e)} />
+                    onChange={e => handleSearchBoxField(e)}
+                     />
             </Input.Group>
             </div>
 

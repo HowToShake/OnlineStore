@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import { TopBar } from './top-bar-view';
+import { searchInput } from '../../redux/actions/top-bar'
 
 const mapStateToProps = state => {
   return {
-    count: state
+    wholeState: state
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleIncrementClick: () => dispatch({ type: 'INCREMENT' }),
-    handleDecrementClick: () => dispatch({ type: 'DECREMENT' })
+    handleSearchBox: (value) => dispatch(searchInput(value)),
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

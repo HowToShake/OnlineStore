@@ -1,7 +1,6 @@
-import { combineReducers } from 'redux';
-import { topBarReducer } from './top-bar-reducer';
-
+import {combineReducers} from 'redux'
+import {topBarReducer} from './top-bar'
 
 export default combineReducers({
-    topBarReducer
-});
+    topBar: topBarReducer,
+})

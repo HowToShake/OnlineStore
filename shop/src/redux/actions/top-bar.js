@@ -1,6 +1,7 @@
-export const searchInput = searchValue =>{
+export const searchInput = value =>{
+    debugger;
     return{
         type: 'SEARCH',
-        payload: searchValue,
+        searchValue: value,
     };
 }
