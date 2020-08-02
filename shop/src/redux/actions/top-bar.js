@@ -1,4 +1,4 @@
-export const searchInput = value =>{
+export const search = value =>{
     debugger;
     return{
         type: 'SEARCH',
