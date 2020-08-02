@@ -8,28 +8,14 @@ import AppStyle from'./App.module.scss'
 
 import Register from '../components/register/register-view'
 import { Link, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ROUTES, { RenderRoutes } from '../routes';
 
 const App = () => {
     return(
         <div styles={AppStyle.App}>
             <Provider store={store}>
                 <TopBar />
-
-                <Router>
-
-                <Switch>
-                    <Route path="/">
-                        <LandingPage /> 
-                    </Route>
-
-                    <Route path="/register">
-                        <Register />
-                    </Route>
-                    
-                </Switch>
-
-                </Router>
-                
+                <RenderRoutes routes = {ROUTES} />
             </Provider>
         </div>
     )

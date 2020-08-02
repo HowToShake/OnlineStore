@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Link, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Register from '../register/register-view'
 // import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap'
 
@@ -20,11 +20,9 @@ export const TopBar = (props) => {
                 <button type="submit" className="btn btn-secondary ml-1 text-center" >Submit</button>
             </form>
 
-        <Router>
             <Link to="/register">
-                <button className="btn btn-primary">REJESTRACJA</button>
+                <button className="btn btn-primary">Register</button>
             </Link>
-        </Router>
         </div>
     )
 
