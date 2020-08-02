@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Input, Select } from 'antd'
-import { HomeOutlined, UserOutlined } from '@ant-design/icons'
+import { HomeOutlined, UserOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 
 export const TopBar = (props) => {
 
-    console.log(props.count);
+    console.log(props);
 
     const { Option } = Select;
 
@@ -17,9 +17,9 @@ export const TopBar = (props) => {
     }
 
     return (
-        <div className="d-flex flex-row bg-light w-100 justify-content-around align-items-center" style={{minHeight: '60px', height: '4vw', minWidth: '100vw'}}>
+        <div className="d-flex flex-row bg-light justify-content-around align-items-center" style={{minHeight: '60px', height: '4vw', minWidth: '100vw'}}>
             <Link to="/">
-                <Button className="d-flex flex-column justify-content-center">Shop Online</Button>
+                <Button className="d-flex flex-column justify-content-center">Online Store</Button>
             </Link>
 
             <div>
@@ -45,6 +45,10 @@ export const TopBar = (props) => {
 
                 <Link to="/register">
                     <Button className={buttonStyle} icon={<UserOutlined />}>Register</Button>
+                </Link>
+
+                <Link to="/cart">
+                    <Button className={buttonStyle} icon={<ShoppingCartOutlined />}>Cart</Button>
                 </Link>
 
             </div>

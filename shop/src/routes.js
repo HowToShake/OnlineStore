@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LandingPage from './components/LandingPage/landing-page-view'
 import Register from './components/register/register-view'
-
+import { Cart } from './components/Cart/cart-view'
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: LandingPage },
@@ -16,7 +16,14 @@ const ROUTES = [
         key: "APP_REGISTER",
         exact: true,
         component: Register,
+      },
+      {
+        path: "/cart",
+        key: "APP_CART",
+        exact: true,
+        component: Cart,
       }
+
     ],
   },
 ];

@@ -44,7 +44,7 @@ const Register = () => {
 
 
     return (
-        <div className="d-flex flex-column justify-content-center" style={{border: '1px dashed red', minWidth: '100vw'}}>
+        <div className="d-flex flex-column justify-content-center pt-5" style={{border: '1px dashed red', minWidth: '100vw'}}>
             <div className="align-self-center pt-5 align-self-center" style={{width: '40vw'}}>
                 <Form
                     {...formItemLayout}
