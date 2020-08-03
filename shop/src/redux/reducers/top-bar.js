@@ -4,7 +4,7 @@ const initialState = {
 }
 
 export const topBarReducer = (state = initialState, action) => {
-  debugger;
+  //debugger;
   switch (action.type) {
     case "SEARCH":
       const { searchValue } = action;

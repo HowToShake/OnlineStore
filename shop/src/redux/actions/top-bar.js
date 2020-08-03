@@ -1,5 +1,5 @@
 export const search = value =>{
-    debugger;
+    //debugger;
     return{
         type: 'SEARCH',
         searchValue: value,
