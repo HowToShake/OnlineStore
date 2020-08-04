@@ -1,7 +1,13 @@
 import React from 'react'
 import LandingPageStyles from './landing-page-view.module.scss'
 
-const LandingPage = (props) => {
+export const LandingPage = (props) => {
+
+    console.log('tu');
+    props.uploadItems();
+
+    console.log('xd')
+    console.log(props);
 
 
     return (
@@ -11,4 +17,4 @@ const LandingPage = (props) => {
     )
 }
 
-export default LandingPage
+

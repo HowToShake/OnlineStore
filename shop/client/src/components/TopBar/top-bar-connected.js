@@ -4,7 +4,7 @@ import { search } from '../../redux/actions/top-bar'
 
 const mapStateToProps = state => {
   return {
-    search: state.topBar.searchValue
+    search: state.topBar.searchValue,
   };
 };
 
