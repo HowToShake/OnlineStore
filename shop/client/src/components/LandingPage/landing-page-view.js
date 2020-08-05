@@ -3,11 +3,7 @@ import LandingPageStyles from './landing-page-view.module.scss'
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
 
-    console.log('tu');
-    mapDispatchToProps.uploadItems();
-    //console.log(mapDispatchToProps.uploadItems())
-
-    console.log('xd')
+    console.log('LandinPageProps')
     console.log(props);
 
 
