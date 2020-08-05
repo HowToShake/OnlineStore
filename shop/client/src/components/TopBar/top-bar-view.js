@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import { Button, Input, Select } from 'antd'
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 
-export const TopBar = (props) => {
+export const TopBar = ({ props, mapDispatchToProps }) => {
 
+    console.log('TOP BAR')
     console.log(props);
 
     const { Option } = Select;
     const buttonStyle =  "d-flex flex-row align-items-center";
 
     const handleSearchBoxField = (e) => {
-        props.handleSearchBox(e.target.value);
+        mapDispatchToProps.handleSearchBox(e.target.value);
     }
 
     return (

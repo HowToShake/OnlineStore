@@ -1,10 +1,11 @@
 import React from 'react'
 import LandingPageStyles from './landing-page-view.module.scss'
 
-export const LandingPage = (props) => {
+export const LandingPage = ({ props, mapDispatchToProps }) => {
 
     console.log('tu');
-    props.uploadItems();
+    mapDispatchToProps.uploadItems();
+    //console.log(mapDispatchToProps.uploadItems())
 
     console.log('xd')
     console.log(props);
