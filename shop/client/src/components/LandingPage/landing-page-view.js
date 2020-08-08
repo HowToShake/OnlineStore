@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect, useLayoutEffect} from 'react'
 import LandingPageStyles from './landing-page-view.module.scss'
 import { LoadingOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { Card, Button } from 'antd'
@@ -12,17 +12,17 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
 
     useEffect(() => {
         mapDispatchToProps.uploadItems();
-
     }, [])
+    
 
     const showItems = () => {
         return(
             props.items.map((element, index) => {
-                const desc = "Size: " + element.size + " | " + "Amount: "+element.amount
+                const desc = "Size: " + element.size + " | " + "Amount: "+element.amount + " | " + "Price: " + element.price + "$";
                 return(
+                    <li key={index} style={{listStyleType: 'none'}}>
                     <Card
-                        key={index}
-                        style={{width: 300, margin: '1vh 1vw 1vh 1vw', flex: '1'}}
+                        style={{width: '23vw', marginTop: '1.5vh', marginLeft: '0.5vw', marginRight: '0.5vw'}}
                         hoverable
                         cover={<div style={{background: `url(${element.imgURL}) no-repeat center center`, backgroundSize: 'contain', height: 200}}></div>}
                         actions={[
@@ -32,7 +32,8 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
                             <Meta title={element.name} description={desc} / >
                                 
                             
-                        </Card>
+                    </Card>
+                    </li>
                 )
             })
         )
@@ -45,9 +46,9 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
                 (<LoadingOutlined />) 
                 : 
                 (<div className={LandingPageStyles.Container}>  
-                    <div className={LandingPageStyles.CardContainer}>
+                    <ul className={LandingPageStyles.CardContainer}>
                         {showItems()}
-                    </div>
+                    </ul>
                 </div>)
             }
         </>

@@ -3,8 +3,10 @@
   width: 100vw;
   height: 100vh;
 
+
   & .CardContainer {
     border: 1px solid red;
+    height: auto;
     display: flex;
     justify-content: start;
     flex-direction: row;
