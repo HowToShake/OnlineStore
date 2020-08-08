@@ -1,12 +1,18 @@
 import axios from 'axios'
 
 export const uploadItems  = () => dispatch => {
-    debugger;
+    dispatch(setItemsLoading());
     axios.get('/api/items')
         .then((res) =>{
             dispatch({
-                type: 'UPLOAD_ITEMS',
-                items: res.data
+                type: 'GET_ITEMS',
+                payload: res.data
             })
         })
+}
+
+export const setItemsLoading = () => {
+    return{
+        type: 'ITEMS_LOADING'
+    }
 }

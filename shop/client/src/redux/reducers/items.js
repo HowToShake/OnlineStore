@@ -1,21 +1,31 @@
 
 const initialItems = {
     items: [],
+    loading: false,
 }
 
 
 export const itemReducer = (state = initialItems, action) => {
     switch (action.type){
-        case 'UPLOAD_ITEMS':
+        case "GET_ITEMS":
             console.log('upload files')
-            debugger;
             console.log(state);
             return {
                 ...state, 
-                items: action.items,
+                items: action.payload,
+                loading: false,
             };
         
-        default:
-            return state;
+
+        case "ITEMS_LOADING":
+            return{
+                ...state,
+                loading: true
+            }
+            
+        default:{
+            return state
+        }
+        
     }
 }

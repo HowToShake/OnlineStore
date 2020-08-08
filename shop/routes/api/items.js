@@ -27,7 +27,7 @@ router.get('/',(req, res) => {
     Item.find()
         .sort({date: -1})
         .then(items => res.json(items));
-})
+});
 
 
 router.delete('/:id', (req, res) => {
@@ -36,16 +36,15 @@ router.delete('/:id', (req, res) => {
         .catch(err => res.status(404).json({success: false}));
 });
 
+
 router.put("/:id", (req,res) => {
     console.log(req.body);
     Item.updateOne({
         name: 'Water'
     })
         .then(items => res.json({success: true}))
-        .catch(err => res.status(404).json({success: false}))
-})
-
-
+        .catch(err => res.status(404).json({success: false}));
+});
 
 
 module.exports =  router;

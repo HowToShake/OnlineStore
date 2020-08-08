@@ -1,16 +1,18 @@
 import { connect } from 'react-redux';
 import { LandingPage } from './landing-page-view';
-import { uploadItems } from '../../redux/actions/items'
+import { uploadItems, setItemsLoading } from '../../redux/actions/items'
 
 const mapStateToProps = state => ({
   props:{
-    items: state.items.items
+    items: state.items.items,
+    state
   }
 });
 
 const mapDispatchToProps = dispatch => ({
   mapDispatchToProps: {
-        uploadItems: () => uploadItems(),
+        uploadItems: () => dispatch(uploadItems()),
+        loadingItems: () => dispatch(setItemsLoading()),
     }
 });
 
