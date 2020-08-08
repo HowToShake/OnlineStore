@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-var fs = require('fs');
 
 const ItemSchema = new Schema({
     name:{
@@ -22,9 +21,8 @@ const ItemSchema = new Schema({
     amount:{
         type: Number,
     },
-    img:{
-        data: Buffer,
-        contentType: String,
+    imgURL:{
+        type: String
     }
 });
 

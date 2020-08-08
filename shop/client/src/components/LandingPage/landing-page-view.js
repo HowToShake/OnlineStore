@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import LandingPageStyles from './landing-page-view.module.scss'
+import { LoadingOutlined } from '@ant-design/icons'
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
 
@@ -12,12 +13,27 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     }, [])
 
 
+    const showItems = () => {
+        return(
+            props.items.map((element, index) => {
+                return <li key={index}>{element.name}{" | "}{element.category}</li>;
+            })
+        )
+    }
+      
 
     return (
-        <div className={LandingPageStyles.Container}>
-            <p>Tu jest layout</p>
-         
-        </div>
+        <>
+            {props.loading ?
+                (<LoadingOutlined />) 
+                : 
+                (<div className={LandingPageStyles.Container}>  
+                    <ul>
+                        {showItems()}
+                    </ul>
+                </div>)
+            }
+        </>
     )
 }
 

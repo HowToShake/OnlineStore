@@ -1,22 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
 
 const Item = require('../../models/Item');
 
 
 router.post('/', (req, res) => {
-    const imgPath = fs.readFileSync(req.body.img);
     const newItem = new Item({
         name: req.body.name,
         category: req.body.category,
         size: req.body.size,
         price: req.body.price,
         amount: req.body.amount,
-        img: {
-            data: imgPath,
-            contentType: 'image/jpg'
-        }
+        imgURL: req.body.imgURL
     });
 
     newItem.save().then(item => res.json(item));

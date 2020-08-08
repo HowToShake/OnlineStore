@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const uploadItems  = () => dispatch => {
     dispatch(setItemsLoading());
-    axios.get('/api/items')
+    axios.get('http://localhost:5000/api/items')
         .then((res) =>{
             dispatch({
                 type: 'GET_ITEMS',
