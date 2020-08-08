@@ -3,23 +3,13 @@ import { Form, Input, Button } from 'antd';
 
 const Register = () => {
 
+    
+    const onFinishFailed = errorInfo => {
+        console.log('Failed:', errorInfo);
+    };
+
     const onFinish = values => {
         console.log('Success:', values);
-    };
-    
-    const [wasError, setWasError] = useState([false, {}])
-
-    const renderFailedMessage = () => {
-        return(
-            <>
-                <h1 className="text-center pt-5">{errorInfo}</h1>
-            </>
-        )
-    }
-
-    const onFinishFailed = errorInfo => {
-        setWasError([true, errorInfo]);
-        console.log('Failed:', errorInfo);
     };
 
     const confirmPasswords = ({getFieldValue}) => ({
@@ -55,7 +45,7 @@ const Register = () => {
 
 
     return (
-        <div className="d-flex flex-row justify-content-between pt-5 mt-5 pb-5" style={{border: '1px solid blue'}}>
+        <div className="d-flex flex-row justify-content-between pt-5 mt-5 pb-5">
             
             <div className="d-flex flex-column justify-content-center pt-5" style={{width: '50vw', borderRight: '1px solid #5559'}}>
                 <h1 className=" text-center">Login</h1>
@@ -190,8 +180,6 @@ const Register = () => {
                         </Form>
                     </div>
             </div>
-
-        {wasError ? renderFailedMessage : <></> }
 
         </div>
     )

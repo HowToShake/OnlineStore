@@ -44,7 +44,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                 </Link>
 
                 <Link to="/register">
-                    <Button className={buttonStyle} icon={<UserOutlined />}>Register</Button>
+                    <Button className={buttonStyle} icon={<UserOutlined />}>Join Us</Button>
                 </Link>
 
                 <Link to="/cart">
