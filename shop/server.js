@@ -1,16 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const config = require('config')
 const cors = require('cors');
 
 const items = require('./routes/api/items');
+const users = require('./routes/api/users');
+const auth = require('./routes/api/auth');
 
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-const db = require('./config/keys').mongoURI;
+const db = config.get('mongoURI');
 
 mongoose
     .connect(db, {
@@ -21,6 +23,8 @@ mongoose
     .catch(err => console.log(err))
 
 app.use('/api/items', items);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 const port = process.env.PORT || 5000;
 
