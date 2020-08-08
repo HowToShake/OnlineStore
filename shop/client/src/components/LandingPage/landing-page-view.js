@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react'
 import LandingPageStyles from './landing-page-view.module.scss'
-import { LoadingOutlined } from '@ant-design/icons'
+import { LoadingOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import { Card, Button } from 'antd'
+
+const { Meta } = Card;
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
 
@@ -12,11 +15,25 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
 
     }, [])
 
-
     const showItems = () => {
         return(
             props.items.map((element, index) => {
-                return <li key={index}>{element.name}{" | "}{element.category}</li>;
+                const desc = "Size: " + element.size + " | " + "Amount: "+element.amount
+                return(
+                    <Card
+                        key={index}
+                        style={{width: 300, margin: '1vh 1vw 1vh 1vw', flex: '1'}}
+                        hoverable
+                        cover={<div style={{background: `url(${element.imgURL}) no-repeat center center`, backgroundSize: 'contain', height: 200}}></div>}
+                        actions={[
+                            <Button onClick={() => console.log('click')}><ShoppingCartOutlined /></Button>
+                        ]}
+                        >
+                            <Meta title={element.name} description={desc} / >
+                                
+                            
+                        </Card>
+                )
             })
         )
     }
@@ -28,9 +45,9 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
                 (<LoadingOutlined />) 
                 : 
                 (<div className={LandingPageStyles.Container}>  
-                    <ul>
+                    <div className={LandingPageStyles.CardContainer}>
                         {showItems()}
-                    </ul>
+                    </div>
                 </div>)
             }
         </>
