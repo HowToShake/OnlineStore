@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react'
+import React, { useEffect } from 'react'
 import LandingPageStyles from './landing-page-view.module.scss'
 import { LoadingOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { Card, Button } from 'antd'
