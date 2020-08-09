@@ -5,13 +5,14 @@ export const loadUser = () => (dispatch, getState) => {
     dispatch({type: 'USER_LOADING'});
     dispatch(clearErrors());
 
-  
     axios.get('http://localhost:5000/api/auth/user', tokenConfig(getState))
     .then(res => dispatch({
         type: 'USER_LOADED',
         payload: res.data
     }))
     .catch(err => {
+        debugger;
+        console.log(err.response)
         dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({
             type: 'AUTH_ERROR'

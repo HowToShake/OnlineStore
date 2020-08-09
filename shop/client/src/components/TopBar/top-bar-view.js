@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Input, Select } from 'antd'
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LogoutOutlined } from '@ant-design/icons'
@@ -16,16 +16,18 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
         if(props.isAuthenticated !== false && props.user !== null && props.token !== null){
             return(
                 <>
+                    
+                    <p>Hello, {props.user.name}</p>
                     <Link to="/">
                         <Button className={buttonStyle} icon={<HomeOutlined />}>Home</Button>
                     </Link>
 
-                    <Link to="/">
-                        <Button className={buttonStyle} icon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()}>Logout</Button>
-                    </Link>
-
                     <Link to="/cart">
                         <Button className={buttonStyle} icon={<ShoppingCartOutlined />}>Cart</Button>
+                    </Link>
+
+                    <Link to="/">
+                        <Button className={buttonStyle} icon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()}>Logout</Button>
                     </Link>
 
                 </>
@@ -39,10 +41,6 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
 
                     <Link to="/auth">
                         <Button className={buttonStyle} icon={<UserOutlined />}>Join Us</Button>
-                    </Link>
-
-                    <Link to="/cart">
-                        <Button className={buttonStyle} icon={<ShoppingCartOutlined />}>Cart</Button>
                     </Link>
                 </>
             )
