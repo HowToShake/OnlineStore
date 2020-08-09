@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { Register } from './register-view';
-import { register, login } from '../../redux/actions/auth'
-import { clearErrors } from '../../redux/actions/error'
+import { register } from '../../../redux/actions/auth'
 
 const mapStateToProps = state => ({
   props:{
@@ -13,8 +12,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   mapDispatchToProps: {
         register: (newUser) => dispatch(register(newUser)),
-        login: (loginData) => dispatch(login(loginData)),
-        clearErrors: () => dispatch(clearErrors())
     }
 });
 

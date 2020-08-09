@@ -1,4 +1,3 @@
-import axios from 'axios'
 
 export const returnErrors = (msg, status, id=null) => {
     return {

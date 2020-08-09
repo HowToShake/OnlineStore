@@ -8,8 +8,6 @@ const initialItems = {
 export const itemReducer = (state = initialItems, action) => {
     switch (action.type){
         case "GET_ITEMS":
-            console.log('upload files')
-            console.log(state);
             return {
                 ...state, 
                 items: action.payload,

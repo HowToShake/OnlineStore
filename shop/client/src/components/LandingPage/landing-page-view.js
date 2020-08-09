@@ -7,8 +7,6 @@ const { Meta } = Card;
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
 
-    console.log('LandinPageProps')
-    console.log(props);
 
     useEffect(() => {
         mapDispatchToProps.uploadItems();
@@ -18,7 +16,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     const showItems = () => {
         return(
             props.items.map((element, index) => {
-                const desc = "Size: " + element.size + " | " + "Amount: "+element.amount + " | " + "Price: " + element.price + "$";
+                const desc = "Size: " + element.size + " | " + "Amount: " + element.amount + " | " + "Price: " + element.price + "$";
                 return(
                     <li key={index} style={{listStyleType: 'none'}}>
                     <Card

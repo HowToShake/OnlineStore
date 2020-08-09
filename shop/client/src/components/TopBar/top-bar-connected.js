@@ -6,6 +6,9 @@ import { logout } from '../../redux/actions/auth'
 const mapStateToProps = state => ({
   props: {
     search: state.topBar.searchValue,
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
+    token: state.auth.token,
   }
 });
 

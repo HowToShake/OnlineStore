@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LandingPage from './components/LandingPage/landing-page-connected'
-import Register from './components/register/register-connected'
+import { Auth } from './components/Auth/auth-view'
 import { Cart } from './components/Cart/cart-view'
 
 const ROUTES = [
@@ -12,10 +12,10 @@ const ROUTES = [
     component: RenderRoutes,
     routes: [
       {
-        path: "/register",
-        key: "APP_REGISTER",
+        path: "/auth",
+        key: "APP_AUTH",
         exact: true,
-        component: Register,
+        component: Auth,
       },
       {
         path: "/cart",

@@ -3,6 +3,7 @@ import { returnErrors, clearErrors } from './error'
 
 export const loadUser = () => (dispatch, getState) => {
     dispatch({type: 'USER_LOADING'});
+    dispatch(clearErrors());
 
   
     axios.get('http://localhost:5000/api/auth/user', tokenConfig(getState))
