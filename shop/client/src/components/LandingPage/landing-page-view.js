@@ -10,7 +10,6 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
 
     useEffect(() => {
         mapDispatchToProps.uploadItems();
-        mapDispatchToProps.loadUser();
     }, [])
     
 

@@ -1,13 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'antd/dist/antd.css';
-import React from 'react'
+import React, { useEffect } from 'react'
 import TopBar from '../components/TopBar/top-bar-connected'
 import AppStyle from'./App.module.scss'
 import ROUTES, { RenderRoutes } from '../routes';
 
+export const App = ({props, mapDispatchToProps}) => {
 
-
-const App = () => {
+    useEffect(() => {
+        mapDispatchToProps.clearErrors();
+        mapDispatchToProps.loadUser();
+    }, [])
 
     return(
         <div className={AppStyle.App}>
@@ -17,4 +20,4 @@ const App = () => {
     )
 }
 
-export default App
+
