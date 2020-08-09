@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LandingPage from './components/LandingPage/landing-page-connected'
-import Register from './components/register/register-view'
+import Register from './components/register/register-connected'
 import { Cart } from './components/Cart/cart-view'
 
 const ROUTES = [

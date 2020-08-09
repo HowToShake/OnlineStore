@@ -1,7 +1,15 @@
 import React, {useState} from 'react'
 import { Form, Input, Button } from 'antd';
+import { useEffect } from 'react';
 
-const Register = () => {
+export const Register = ( {props, mapDispatchToProps}) => {
+
+    console.log(props.error);
+
+
+    useEffect(() => {
+       mapDispatchToProps.clearErrors()
+    }, [])
 
     
     const onFinishFailed = errorInfo => {
@@ -10,7 +18,24 @@ const Register = () => {
 
     const onFinish = values => {
         console.log('Success:', values);
+        const {name, email, password} = values;
+
+        const newUser = {
+            name,
+            email, 
+            password
+        }
+
+        mapDispatchToProps.register(newUser);
+
     };
+
+    const onLoginFinish = values => {
+        console.log('Success:', values);
+
+        mapDispatchToProps.login(values);
+    }
+
 
     const confirmPasswords = ({getFieldValue}) => ({
         validator (rule, value) {
@@ -23,6 +48,17 @@ const Register = () => {
         );
         }
     })
+
+    const displayError = () => {
+        if(props.error.id === null){
+            return(<></>)
+            
+        }else{
+            return(<>
+                <h1>{props.error.msg.msg}</h1>
+            </>)
+        }
+    }
 
     const formItemLayout = {
         labelCol: {
@@ -54,19 +90,24 @@ const Register = () => {
                     {...formItemLayout}
                     name="login"
                     initialValues={{
-                        remember: true,
+                        remember: false,
                     }}
-                    onFinish={onFinish}
+                    onFinish={onLoginFinish}
                     onFinishFailed={onFinishFailed}
                     >
-                    <Form.Item
-                        label="Username"
-                        name="username"
+                    <Form.Item 
+                        name="email"
+                        label="E-mail"
+                        hasFeedback
                         rules={[
                         {
-                            required: true,
-                            message: 'Please input your username!',
+                            type: "email",
+                            message: "The input is not valid E-mail!"
                         },
+                        {
+                            required: true,
+                            message: "Please input your E-mail!"
+                        }
                         ]}
                     >
                         <Input />
@@ -110,7 +151,7 @@ const Register = () => {
                         <Form.Item
         
                             label="Username"
-                            name="username"
+                            name="name"
                             hasFeedback
                             rules={[
                             {
@@ -180,7 +221,7 @@ const Register = () => {
                         </Form>
                     </div>
             </div>
-
+            {displayError()}
         </div>
     )
 }

@@ -51,6 +51,8 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     <Button className={buttonStyle} icon={<ShoppingCartOutlined />}>Cart</Button>
                 </Link>
 
+                <Button onClick={() => mapDispatchToProps.logout()}>LOGOUT</Button>
+
             </div>
 
 
