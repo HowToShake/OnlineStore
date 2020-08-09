@@ -17,7 +17,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
             return(
                 <>
                     
-                    <p>Hello, {props.user.name}</p>
+                    <Button style={{border: 'none', backgroundColor: 'transparent'}}>Welcome back, {props.user.name}</Button>
                     <Link to="/">
                         <Button className={buttonStyle} icon={<HomeOutlined />}>Home</Button>
                     </Link>
@@ -27,7 +27,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     </Link>
 
                     <Link to="/">
-                        <Button className={buttonStyle} icon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()}>Logout</Button>
+                        <Button className={buttonStyle} icon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()} style={{color: 'red'}}>Logout</Button>
                     </Link>
 
                 </>

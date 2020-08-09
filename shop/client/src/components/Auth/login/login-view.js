@@ -1,13 +1,9 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd';
 import { formItemLayout } from '../Layout'
-import { useHistory } from 'react-router-dom'
+
 
 export const Login = ({props, mapDispatchToProps }) => {
-
-    let history = useHistory();
-
-    console.log(props.error);
 
     const onFinish = values => {
         mapDispatchToProps.clearErrors();
