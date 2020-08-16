@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LandingPage from './components/LandingPage/landing-page-connected'
 import Auth from './components/Auth/auth-connected'
-import { Cart } from './components/Cart/cart-view'
+import Cart from './components/Cart/cart-connected'
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: LandingPage },

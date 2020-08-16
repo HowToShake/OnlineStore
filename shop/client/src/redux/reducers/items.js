@@ -2,6 +2,7 @@
 const initialItems = {
     items: [],
     loading: false,
+    searchedItems: [],
 }
 
 
@@ -19,6 +20,12 @@ export const itemReducer = (state = initialItems, action) => {
             return{
                 ...state,
                 loading: true
+            };
+
+        case 'GET_SEARCHED_ITEMS':
+            return{
+                ...state,
+                searchedItems: action.payload,
             }
             
         default:{

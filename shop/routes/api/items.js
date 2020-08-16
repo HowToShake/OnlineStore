@@ -24,6 +24,19 @@ router.get('/',(req, res) => {
         .then(items => res.json(items));
 });
 
+router.get('/search?',(req,res) => {
+    console.log('TU')
+    const {searchValue, selectedCategory} = req.query;
+    console.log(searchValue);
+    console.log(selectedCategory);
+
+    if(selectedCategory === 'All'){
+        Item.find({ name: { $regex: searchValue } }).sort({name: 1}).then(items => res.json(items));
+    }else{
+        Item.find({ name: { $regex: searchValue }, category: { $regex: selectedCategory } }).sort({category: 1}).then(items => res.json(items));
+    }
+})
+
 
 router.delete('/:id', (req, res) => {
     Item.findById(req.params.id)

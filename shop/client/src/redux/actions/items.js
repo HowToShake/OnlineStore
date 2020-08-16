@@ -16,3 +16,13 @@ export const setItemsLoading = () => {
         type: 'ITEMS_LOADING'
     }
 }
+
+
+export const getSearchedItems = ( searchValue, selectedCategory ) => dispatch => {
+    axios.get(`http://localhost:5000/api/items/search?`, { params: { searchValue, selectedCategory }}).then(res => {
+        dispatch({
+            type: 'GET_SEARCHED_ITEMS',
+            payload: res.data,
+        })
+    }).catch(err => console.log(err));
+}

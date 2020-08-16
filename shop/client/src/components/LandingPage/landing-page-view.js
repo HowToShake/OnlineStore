@@ -7,7 +7,6 @@ const { Meta } = Card;
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
 
-
     useEffect(() => {
         mapDispatchToProps.uploadItems();
     }, [])
@@ -41,7 +40,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     return (
         <>
             {props.loading ?
-                (<LoadingOutlined />) 
+                (<LoadingOutlined style={{width: '100vw', height: '100vh'}}/>) 
                 : 
                 (<div className={LandingPageStyles.Container}>  
                     <ul className={LandingPageStyles.CardContainer}>

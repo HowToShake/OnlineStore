@@ -1,10 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-export const Cart = () => {
+export const Cart = ({props, mapDispatchToProps}) => {
+
     return (
-        <div>
+        <>
+        {(props.isAuthenticated && (props.user !== null)) ? (<>
             <h1>Cart</h1>
-        </div>
+
+            
+        </>) : (<>
+            <h1>Only authenticated users can add products to cart!</h1>
+            <h3>If you still don't have account <Link to="/auth">Join us!</Link></h3>
+        </>)}
+            
+        </>
     )
 }
 

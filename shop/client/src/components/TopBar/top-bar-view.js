@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Input, Select } from 'antd'
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LogoutOutlined } from '@ant-design/icons'
 
 export const TopBar = ({ props, mapDispatchToProps }) => {
 
+    const All = 'All';
     const { Option } = Select;
     const buttonStyle =  "d-flex flex-row align-items-center";
+    const [selectedCategory, setSelectedCategory] = useState(All)
 
     const handleSearchBoxField = (e) => {
         mapDispatchToProps.handleSearchBox(e.target.value);
@@ -47,6 +49,26 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
         }
     }
 
+    const renderCategories = () => {
+
+        const categories = [...new Set(props.items.map(item => item.category))];
+
+        return(
+            <>
+                <Select defaultValue={All} style={{width: '6vw'}} onChange={(value) => setSelectedCategory(value)}>
+                <Option value={All}>{All}</Option>
+                    {categories.map((category, index) => (
+                        <Option key={index} value={category}>{category}</Option>
+                    ))}
+                </Select>
+            </>
+        )
+    }
+
+    const searchValue = async () => {
+      await mapDispatchToProps.getSearchedItems(props.search, selectedCategory)
+    }
+
     return (
         <div className="d-flex flex-row bg-light justify-content-around align-items-center" style={{minHeight: '60px', height: '4vw', minWidth: '100vw'}}>
             <Link to="/">
@@ -55,16 +77,15 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
 
             <div>
             <Input.Group className="site-input-group-wrapper">
-                <Select defaultValue="All">
-                    <Option value="All">All</Option>
-                    <Option value="Cars">Cars</Option>
-                </Select>
+                
+                {renderCategories()}
 
                 <Input.Search
                     style={{ width: '40vw' }} 
                     placeholder="input search text"
                     enterButton="Search"
                     onChange={e => handleSearchBoxField(e)}
+                    onSearch={() => searchValue()}
                      />
             </Input.Group>
             </div>
