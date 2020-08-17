@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Input, Select } from 'antd'
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LogoutOutlined } from '@ant-design/icons'
 
@@ -9,6 +9,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
     const { Option } = Select;
     const buttonStyle =  "d-flex flex-row align-items-center";
     const [selectedCategory, setSelectedCategory] = useState(All)
+    const history = useHistory();
 
     const handleSearchBoxField = (e) => {
         mapDispatchToProps.handleSearchBox(e.target.value);
@@ -67,6 +68,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
 
     const searchValue = async () => {
       await mapDispatchToProps.getSearchedItems(props.search, selectedCategory)
+      history.push('/search')
     }
 
     return (
@@ -79,14 +81,15 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
             <Input.Group className="site-input-group-wrapper">
                 
                 {renderCategories()}
-
+           
                 <Input.Search
                     style={{ width: '40vw' }} 
                     placeholder="input search text"
                     enterButton="Search"
                     onChange={e => handleSearchBoxField(e)}
                     onSearch={() => searchValue()}
-                     />
+                    />
+
             </Input.Group>
             </div>
 
