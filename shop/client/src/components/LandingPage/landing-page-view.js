@@ -11,6 +11,10 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         mapDispatchToProps.uploadItems();
     }, [])
     
+    const addItem = (element) => {
+        mapDispatchToProps.onAddItemToCartWasPressed(element);
+    }
+
 
     const showItems = () => {
         return(
@@ -23,7 +27,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
                         hoverable
                         cover={<div style={{background: `url(${element.imgURL}) no-repeat center center`, backgroundSize: 'contain', height: 200}}></div>}
                         actions={[
-                            <Button onClick={() => console.log('click')}><ShoppingCartOutlined /></Button>
+                            <Button onClick={() => addItem(element)}><ShoppingCartOutlined /></Button>
                         ]}
                         >
                             <Meta title={element.name} description={desc} / >

@@ -8,7 +8,7 @@ export const Login = ({props, mapDispatchToProps }) => {
     const onFinish = values => {
         mapDispatchToProps.clearErrors();
         console.log('Success:', values);
-        mapDispatchToProps.login(values);        
+        mapDispatchToProps.login(values);
     }
         
     const onFinishFailed = errorInfo => {

@@ -67,8 +67,10 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
     }
 
     const searchValue = async () => {
-      await mapDispatchToProps.getSearchedItems(props.search, selectedCategory)
-      history.push('/search')
+        if(props.search !== ''){
+            await mapDispatchToProps.getSearchedItems(props.search, selectedCategory)
+            history.push('/search')
+        }
     }
 
     return (

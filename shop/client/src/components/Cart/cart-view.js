@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
 export const Cart = ({props, mapDispatchToProps}) => {
+
+    useEffect(() => {
+        if(props.user){
+            console.log(props.user.id);
+            debugger;
+            mapDispatchToProps.createUserCart(props.user._id)
+        }
+    }, [props.user])
 
     return (
         <>
