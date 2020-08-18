@@ -5,6 +5,7 @@ import { App } from './App-view'
 
 const mapStateToProps = state => ({
   props:{
+    user: state.auth.user
   }
 });
 
@@ -12,6 +13,7 @@ const mapDispatchToProps = dispatch => ({
   mapDispatchToProps: {
         clearErrors: () => dispatch(clearErrors()),
         loadUser: () => dispatch(loadUser()),
+
     }
 });
 

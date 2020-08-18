@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { Cart } from './cart-view';
-
 import { uploadItems } from '../../redux/actions/items'
 import { createUserCart } from '../../redux/actions/cart';
 
