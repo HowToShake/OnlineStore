@@ -12,3 +12,9 @@ export const addItemToCart = (selectedItem) => {
         payload: selectedItem,
     }
 }
+
+export const clearUserCart = () => {
+    return{
+        type: 'CLEAR_USER_CART'
+    }
+}

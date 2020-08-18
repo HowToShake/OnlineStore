@@ -21,6 +21,12 @@ export const cartReducer = (state = initialState, action) =>{
                 id: Math.floor(Math.random() * (MAX - MIN + 1)+MIN),
                 userID: action.userID,
             }
+        case 'CLEAR_USER_CART':
+            return{
+                id: '',
+                order: [],
+                userID: '',
+            }
 
         default: 
             return state;
