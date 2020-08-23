@@ -14,7 +14,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
 
     const handleResize = () => {
         const { width } = getWindowDimensions();
-
+        
         if(width > 1000){
             setWidthToDrawer('23vw')
         }else{
@@ -26,6 +26,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         mapDispatchToProps.uploadItems();
         window.addEventListener('resize', handleResize)
         handleResize()
+        console.log('halko'+handleResize());
         return() =>{
             window.removeEventListener('resize', handleResize)
         }

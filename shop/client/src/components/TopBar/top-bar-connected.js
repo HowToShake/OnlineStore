@@ -8,7 +8,6 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
     token: state.auth.token,
-    items: state.items.items,
     categories: state.items.categories,
   }
 });

@@ -1,7 +1,3 @@
-
-const MAX = 99999999999999999;
-const MIN = 10000000000000000;
-
 const initialState = {
     id: '',
     order: [],
@@ -18,7 +14,7 @@ export const cartReducer = (state = initialState, action) =>{
         case 'CREATE_NEW_ORDER':
             return{
                 ...state,
-                id: Math.floor(Math.random() * (MAX - MIN + 1)+MIN),
+                id: Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) + 1,
                 userID: action.userID,
             }
         case 'CLEAR_USER_CART':
