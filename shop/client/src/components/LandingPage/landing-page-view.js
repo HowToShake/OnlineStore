@@ -1,20 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LandingPageStyles from './landing-page-view.module.scss'
 import { LoadingOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { Card, Button } from 'antd'
+import { getWindowDimensions } from '../../models/common-method'
 
 const { Meta } = Card;
 
+
 export const LandingPage = ({ props, mapDispatchToProps }) => {
+
+
+    const [widthToDrawer, setWidthToDrawer] = useState();
+
+    const handleResize = () => {
+        const { width } = getWindowDimensions();
+
+        if(width > 1000){
+            setWidthToDrawer('23vw')
+        }else{
+            setWidthToDrawer('33vw')
+        }
+      }
 
     useEffect(() => {
         mapDispatchToProps.uploadItems();
+        window.addEventListener('resize', handleResize)
+        handleResize()
+        return() =>{
+            window.removeEventListener('resize', handleResize)
+        }
     }, [])
+
     
     const addItem = (element) => {
         mapDispatchToProps.onAddItemToCartWasPressed(element);
     }
-
+    
+    console.log(widthToDrawer);
 
     const showItems = () => {
         return(
@@ -23,7 +45,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
                 return(
                     <li key={index} style={{listStyleType: 'none'}}>
                     <Card
-                        style={{width: '23vw', marginTop: '1.5vh', marginLeft: '0.5vw', marginRight: '0.5vw'}}
+                        style={{width: widthToDrawer, marginTop: '1.5vh', marginLeft: '0.5vw', marginRight: '0.5vw'}}
                         hoverable
                         cover={<div style={{background: `url(${element.imgURL}) no-repeat center center`, backgroundSize: 'contain', height: 200}}></div>}
                         actions={[

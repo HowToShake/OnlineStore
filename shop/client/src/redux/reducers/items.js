@@ -3,6 +3,7 @@ const initialItems = {
     items: [],
     loading: false,
     searchedItems: [],
+    categories: [],
 }
 
 
@@ -26,6 +27,12 @@ export const itemReducer = (state = initialItems, action) => {
             return{
                 ...state,
                 searchedItems: action.payload,
+            }
+
+        case 'GET_CATEGORIES':
+            return{
+                ...state,
+                categories: action.categories
             }
             
         default:{

@@ -6,7 +6,6 @@ export const Cart = ({props, mapDispatchToProps}) => {
     useEffect(() => {
         if(props.user){
             console.log(props.user.id);
-            debugger;
             mapDispatchToProps.createUserCart(props.user._id)
         }
     }, [props.user])

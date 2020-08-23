@@ -26,3 +26,12 @@ export const getSearchedItems = ( searchValue, selectedCategory ) => dispatch =>
         })
     }).catch(err => console.log(err));
 }
+
+export const getDistinctCategories = () => dispatch => {
+    axios.get('http://localhost:5000/api/items/categories').then(res => {
+        dispatch({
+            type: 'GET_CATEGORIES',
+            categories: res.data
+        })
+    }).catch(err => console.log(err));
+}

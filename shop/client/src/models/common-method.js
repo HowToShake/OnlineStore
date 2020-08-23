@@ -1,3 +1,8 @@
-export const resize = () => {
-    const width = (width.innerWidth > 0) ? window.innerWidth : screen.width;
+
+export const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
 }

@@ -28,6 +28,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "globals": {
+    "screen": true
+  },
   "proxy": "http://localhost:5000/api/items",
   "browserslist": {
     "production": [

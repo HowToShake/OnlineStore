@@ -1,19 +1,22 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Input, Select } from 'antd'
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LogoutOutlined } from '@ant-design/icons'
+import { CATEGORY_ALL } from '../../models/const'
 
 export const TopBar = ({ props, mapDispatchToProps }) => {
 
-    const All = 'All';
+
     const { Option } = Select;
     const buttonStyle =  "d-flex flex-row align-items-center";
-    const [selectedCategory, setSelectedCategory] = useState(All)
+    const [selectedCategory, setSelectedCategory] = useState(CATEGORY_ALL)
+    const [searchBoxValue, setSearchBoxValue] = useState('');
     const history = useHistory();
+    
+    useEffect(() => {
+        mapDispatchToProps.getDistinctCategories()
+    }, [])
 
-    const handleSearchBoxField = (e) => {
-        mapDispatchToProps.handleSearchBox(e.target.value);
-    }
 
     const renderButtons = () => {
         if(props.isAuthenticated !== false && props.user !== null && props.token !== null){
@@ -51,14 +54,11 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
     }
 
     const renderCategories = () => {
-
-        const categories = [...new Set(props.items.map(item => item.category))];
-
         return(
             <>
-                <Select defaultValue={All} style={{width: '6vw'}} onChange={(value) => setSelectedCategory(value)}>
-                <Option value={All}>{All}</Option>
-                    {categories.map((category, index) => (
+                <Select defaultValue={CATEGORY_ALL} style={{width: '6vw'}} onChange={(value) => setSelectedCategory(value)}>
+                <Option value={CATEGORY_ALL}>All</Option>
+                    {props.categories.map((category, index) => (
                         <Option key={index} value={category}>{category}</Option>
                     ))}
                 </Select>
@@ -67,9 +67,9 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
     }
 
     const searchValue = async () => {
-        if(props.search !== ''){
-            await mapDispatchToProps.getSearchedItems(props.search, selectedCategory)
-            history.push('/search')
+        if(searchBoxValue !== ''){
+            await mapDispatchToProps.getSearchedItems(searchBoxValue, selectedCategory)
+            history.push(`/search`)
         }
     }
 
@@ -88,7 +88,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     style={{ width: '40vw' }} 
                     placeholder="input search text"
                     enterButton="Search"
-                    onChange={e => handleSearchBoxField(e)}
+                    onChange={e =>  setSearchBoxValue(e.target.value)}
                     onSearch={() => searchValue()}
                     />
 
