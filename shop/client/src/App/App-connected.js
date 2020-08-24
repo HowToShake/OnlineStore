@@ -12,7 +12,6 @@ const mapDispatchToProps = dispatch => ({
   mapDispatchToProps: {
         clearErrors: () => dispatch(clearErrors()),
         loadUser: () => dispatch(loadUser()),
-
     }
 });
 

@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { login } from '../../../redux/actions/auth'
 import { Login } from './login-view'
 import { clearErrors } from '../../../redux/actions/error';
-import { createUserCart } from '../../../redux/actions/cart';
 
 const mapStateToProps = state => ({
     props:{

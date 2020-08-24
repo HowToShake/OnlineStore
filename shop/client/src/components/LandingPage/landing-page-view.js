@@ -24,9 +24,8 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
 
     useEffect(() => {
         mapDispatchToProps.uploadItems();
-        window.addEventListener('resize', handleResize)
-        handleResize()
-        console.log('halko'+handleResize());
+        window.addEventListener('resize', handleResize);
+        handleResize();
         return() =>{
             window.removeEventListener('resize', handleResize)
         }

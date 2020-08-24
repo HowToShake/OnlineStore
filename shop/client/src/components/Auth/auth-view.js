@@ -5,16 +5,15 @@ import Register from './register/register-connected'
 
 export const Auth = ({props, mapDispatchToProps}) => {
 
-    console.log(props);
     let history = useHistory();
-
-    console.log('msg')
-    console.log(props.error.msg.msg)
 
     useEffect(() => {
     mapDispatchToProps.clearErrors();
-    if(props.isAuthenticated)
+
+    if(props.isAuthenticated){
         history.push('/')
+    }
+
     }, [props.isAuthenticated])
 
     const renderErrorMessage = () => {

@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   mapDispatchToProps: {
     logout: () => dispatch(logout()),
     getSearchedItems: (searchValue, selectedCategory) => dispatch(getSearchedItems(searchValue, selectedCategory)),
-    getDistinctCategories: () => dispatch(getDistinctCategories())
+    getDistinctCategories: () => dispatch(getDistinctCategories()),
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
