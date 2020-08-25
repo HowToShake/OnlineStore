@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import LandingPageStyles from './landing-page-view.module.scss'
 import { LoadingOutlined, ShoppingCartOutlined } from '@ant-design/icons'
-import { Card, Button } from 'antd'
+import { Card, Button, message } from 'antd'
 import { getWindowDimensions } from '../../models/common-method'
 
 const { Meta } = Card;
 
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
-
-
     const [widthToDrawer, setWidthToDrawer] = useState();
 
     const handleResize = () => {
@@ -20,7 +18,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         }else{
             setWidthToDrawer('33vw')
         }
-      }
+    }
 
     useEffect(() => {
         mapDispatchToProps.uploadItems();
@@ -29,14 +27,17 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         return() =>{
             window.removeEventListener('resize', handleResize)
         }
-    }, [])
+    }, [props.user])
 
     
     const addItem = (element) => {
-        mapDispatchToProps.onAddItemToCartWasPressed(element);
+        if(props.user){
+            mapDispatchToProps.onAddItemToCartWasPressed(element);
+        }else{
+            message.error('Only authenticated user can add products to Cart!', 1.5);
+        }
     }
     
-    console.log(widthToDrawer);
 
     const showItems = () => {
         return(
@@ -61,19 +62,29 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
             })
         )
     }
+
+    const loadItems = () => {
+        if(props.loading){
+            return(
+                <>
+                    <LoadingOutlined style={{width: '100vw', height: '100vh'}}/>
+                </>
+            )
+        }else{
+            return(
+                <div className={LandingPageStyles.Container}>  
+                    <ul className={LandingPageStyles.CardContainer}>
+                        {showItems()}
+                    </ul>
+                </div>
+            )
+        }
+    }
       
 
     return (
         <>
-            {props.loading ?
-                (<LoadingOutlined style={{width: '100vw', height: '100vh'}}/>) 
-                : 
-                (<div className={LandingPageStyles.Container}>  
-                    <ul className={LandingPageStyles.CardContainer}>
-                        {showItems()}
-                    </ul>
-                </div>)
-            }
+            {loadItems()}
         </>
     )
 }
