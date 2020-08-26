@@ -87,7 +87,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
             
                     <Input.Search
                         className={style.searchInput}
-                        placeholder="input search text"
+                        placeholder="Search product"
                         enterButton="Search"
                         onChange={e =>  setSearchBoxValue(e.target.value)}
                         onSearch={() => searchValue()}
