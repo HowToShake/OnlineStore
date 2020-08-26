@@ -45,11 +45,11 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
             return(
                 <>
                     <Link to="/">
-                        <Button className={buttonStyle} icon={<HomeOutlined />}>Home</Button>
+                        <Button icon={<HomeOutlined />}>Home</Button>
                     </Link>
 
                     <Link to="/auth">
-                        <Button className={buttonStyle} icon={<UserOutlined />}>Join Us</Button>
+                        <Button icon={<UserOutlined />}>Join Us</Button>
                     </Link>
                 </>
             )
@@ -78,11 +78,11 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
 
     return (
         <div className={style.topBarView}>
-            <Link to="/" className={style.homeButton}>
-                <Button>Online Store</Button>
-            </Link>
-
             <div className={style.innerWrapper}>
+                <Link to="/" className={style.homeButton}>
+                    <Button className={style.logo}>Online Store</Button>
+                </Link>
+                
                 <Input.Group className={style.searchBar}>
                     
                     {renderCategories()}
