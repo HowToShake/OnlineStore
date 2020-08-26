@@ -9,9 +9,7 @@ import style from './top-bar-view.module.scss'
 
 export const TopBar = ({ props, mapDispatchToProps }) => {
 
-
     const { Option } = Select;
-    const buttonStyle =  "d-flex flex-row align-items-center";
     const [selectedCategory, setSelectedCategory] = useState(CATEGORY_ALL)
     const [searchBoxValue, setSearchBoxValue] = useState('');
     const history = useHistory();
@@ -36,7 +34,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     </Link>
 
                     <Link to="/">
-                        <Button cicon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()} style={{color: 'red'}}>Logout</Button>
+                        <Button icon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()} style={{color: 'red'}}>Logout</Button>
                     </Link>
 
                 </>
