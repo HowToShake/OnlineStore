@@ -1,11 +1,9 @@
 .Container {
-  border: 1px solid green;
-  width: 100vw;
+  width: 99vw;
   height: 100vh;
 
 
   & .CardContainer {
-    border: 1px solid red;
     height: auto;
     display: flex;
     justify-content: start;

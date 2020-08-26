@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Button, Input, Select } from 'antd'
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LogoutOutlined } from '@ant-design/icons'
 import { CATEGORY_ALL } from '../../models/const'
-
+import style from './top-bar-view.module.scss'
 
 
 
@@ -28,15 +28,15 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     
                     <Button style={{border: 'none', backgroundColor: 'transparent'}}>Welcome back, {props.user.name}</Button>
                     <Link to="/">
-                        <Button className={buttonStyle} icon={<HomeOutlined />}>Home</Button>
+                        <Button icon={<HomeOutlined />}>Home</Button>
                     </Link>
 
                     <Link to="/cart">
-                        <Button className={buttonStyle} icon={<ShoppingCartOutlined />}>Cart</Button>
+                        <Button icon={<ShoppingCartOutlined />}>Cart</Button>
                     </Link>
 
                     <Link to="/">
-                        <Button className={buttonStyle} icon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()} style={{color: 'red'}}>Logout</Button>
+                        <Button cicon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()} style={{color: 'red'}}>Logout</Button>
                     </Link>
 
                 </>
@@ -59,7 +59,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
     const renderCategories = () => {
         return(
             <>
-                <Select defaultValue={CATEGORY_ALL} style={{width: '6vw'}} onChange={(value) => setSelectedCategory(value)}>
+                <Select defaultValue={CATEGORY_ALL} className={style.categories} onChange={(value) => setSelectedCategory(value)}>
                 <Option value={CATEGORY_ALL}>All</Option>
                     {props.categories.map((category, index) => (
                         <Option key={index} value={category}>{category}</Option>
@@ -77,31 +77,31 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
     }
 
     return (
-        <div className="d-flex flex-row bg-light justify-content-around align-items-center" style={{minHeight: '60px', height: '4vw', minWidth: '100vw'}}>
-            <Link to="/">
-                <Button className="d-flex flex-column justify-content-center">Online Store</Button>
+        <div className={style.topBarView}>
+            <Link to="/" className={style.homeButton}>
+                <Button>Online Store</Button>
             </Link>
 
-            <div>
-            <Input.Group className="site-input-group-wrapper">
+            <div className={style.innerWrapper}>
+                <Input.Group className={style.searchBar}>
+                    
+                    {renderCategories()}
+            
+                    <Input.Search
+                        className={style.searchInput}
+                        placeholder="input search text"
+                        enterButton="Search"
+                        onChange={e =>  setSearchBoxValue(e.target.value)}
+                        onSearch={() => searchValue()}
+                        />
+
+                </Input.Group>
                 
-                {renderCategories()}
-           
-                <Input.Search
-                    style={{ width: '40vw' }} 
-                    placeholder="input search text"
-                    enterButton="Search"
-                    onChange={e =>  setSearchBoxValue(e.target.value)}
-                    onSearch={() => searchValue()}
-                    />
 
-            </Input.Group>
+                <div className={style.buttonsLeft}>
+                    {renderButtons()}
+                </div>
             </div>
-
-            <div className="d-flex flex-row justify-content-center align-items-center">
-                {renderButtons()}
-            </div>
-
 
         </div>
     )

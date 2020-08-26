@@ -1,0 +1,51 @@
+.topBarView {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 15vh;
+  min-height: 80px;
+  max-height: 90px;
+  min-width: 20%;
+  max-width: 99vw;
+
+  .homeButton {
+    border: 1px solid blue;
+  }
+
+  .innerWrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 1vw;
+    min-width: 80%;
+
+    .searchBar {
+      border: 1px solid hotpink;
+      display: flex;
+      flex-direction: row;
+      width: 50%;
+
+      .categories {
+        min-width: 130px;
+      }
+
+      .searchInput {
+        min-width: 230px;
+      }
+    }
+  }
+
+  .buttonsLeft {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    & Button {
+      margin-left: 1vw;
+    }
+  }
+}
