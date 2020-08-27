@@ -8,14 +8,22 @@ const { Meta } = Card;
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
   const [widthToDrawer, setWidthToDrawer] = useState();
+  const [widthToMenu, setwidthToMenu] = useState()
+  const categories = ['Pop', 'Rock', 'Hip Hop', 'Indie', 'Soul', 'Jazz', 'Metal', 'Country', 'Electronic']
 
   const handleResize = () => {
     const { width } = getWindowDimensions();
-
+    
     if (width > 1000) {
       setWidthToDrawer("23vw");
     } else {
       setWidthToDrawer("33vw");
+    }
+
+    if(width > 768){
+      setwidthToMenu(`${(100/(categories.length))}vw`)
+    }else if (width <= 768){
+      setwidthToMenu('');
     }
   };
 
@@ -99,23 +107,38 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     }
   }
 
-  const categories = ['Pop', 'Rock', 'Hip Hop', 'Electronic', 'Indie', 'Soul', 'Jazz', 'Metal', 'Country']
+
 
   return(
     <>
-      <Menu onClick={() => console.log('hejka')} mode='horizontal' style={{width: '100vw', backgroundColor: 'transparent', paddingTop: '10px',  overflowX: 'auto', overflowY: 'hidden'}}>
-        {categories.map((category, index) => {
-          return(
-            <Menu.Item key={index} style={{width: `${Math.floor(99/(categories.length + 1))}vw`}} onClick={() => switchCategory(category)}>
-              <p style={{padding: 0, margin: 0, textAlign: 'center', fontSize: '1em'}}>{category}</p>
-            </Menu.Item>
-          )
-        })}
-      </Menu>
+
+    {widthToMenu  ?
+      <>
+        <Menu onClick={() => console.log('hejka')} mode='horizontal' style={{width: '100vw', backgroundColor: 'transparent', paddingTop: '10px',  overflowX: 'auto', overflowY: 'hidden'}}>
+          {categories.map((category, index) => {
+            return(
+              <Menu.Item key={index} onClick={() => switchCategory(category)} style={{margin: 0}}>
+                <p style={{width: widthToMenu, textAlign: 'center', fontSize: '1em'}}>{category}</p>
+              </Menu.Item>
+            )}
+          )}
+        </Menu>
+      </> :
 
       <>
-        {loadItems()}
+        <Menu onClick={() => console.log('hejka')} mode='horizontal' style={{width: '100vw', backgroundColor: 'transparent', paddingTop: '10px',  overflowX: 'auto', overflowY: 'hidden'}}>
+          {categories.map((category, index) => {
+            return(
+              <Menu.Item key={index} onClick={() => switchCategory(category)}>
+                {category}
+              </Menu.Item>
+            )}
+          )}
+        </Menu>
       </>
+    }
+  
+
     </>
   )
 };
