@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import LandingPageStyles from "./landing-page-view.module.scss";
 import { LoadingOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Card, Button, message, Menu } from "antd";
-import { getWindowDimensions } from "../../models/common-method";
-import SubMenu from "antd/lib/menu/SubMenu";
+import { getWindowDimensions, getWindowWidth } from "../../models/common-method";
 
 const { Meta } = Card;
 
@@ -45,10 +44,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         <li key={index} style={{ listStyleType: "none" }}>
           <Card
             style={{
-              width: widthToDrawer,
               marginTop: "1.5vh",
-              marginLeft: "0.5vw",
-              marginRight: "0.5vw",
             }}
             hoverable
             cover={
@@ -77,7 +73,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     if (props.loading) {
       return (
         <>
-          <LoadingOutlined style={{ width: "100vw", height: "100vh" }} />
+          <LoadingOutlined style={{ width: "99vw", height: "100vh" }} />
         </>
       );
     } else {
@@ -103,23 +99,23 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     }
   }
 
-  const categories = ['Pop', 'Rock', 'Hip Hop', 'Electronic', 'Indie', 'Soul', 'Jazz']
+  const categories = ['Pop', 'Rock', 'Hip Hop', 'Electronic', 'Indie', 'Soul', 'Jazz', 'Metal', 'Country']
 
   return(
     <>
-      <Menu onClick={() => console.log('hejka')} mode='horizontal' style={{width: '100vw'}}>
+      <Menu onClick={() => console.log('hejka')} mode='horizontal' style={{width: '100vw', backgroundColor: 'transparent', paddingTop: '10px',  overflowX: 'auto', overflowY: 'hidden'}}>
         {categories.map((category, index) => {
           return(
             <Menu.Item key={index} style={{width: `${Math.floor(99/(categories.length + 1))}vw`}} onClick={() => switchCategory(category)}>
-              <p style={{padding: 0, margin: 0, textAlign: 'center'}}>{category}</p>
+              <p style={{padding: 0, margin: 0, textAlign: 'center', fontSize: '1em'}}>{category}</p>
             </Menu.Item>
           )
         })}
       </Menu>
 
-      <div className="LandingPage">
-
-      </div>
+      <>
+        {loadItems()}
+      </>
     </>
   )
 };

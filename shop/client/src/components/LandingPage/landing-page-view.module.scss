@@ -1,9 +1,11 @@
 .Container {
-  width: 99vw;
-  height: 100vh;
+  position: relative;
+  max-width: 99vw;
 
 
   & .CardContainer {
+    position: relative;
+    max-width: 99vw;
     height: auto;
     display: flex;
     justify-content: start;
