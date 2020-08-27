@@ -30,7 +30,6 @@
       min-width: 360px;
       width: 60%;
 
-
       .categories {
         min-width: 130px;
       }
@@ -42,13 +41,13 @@
   }
 
   .buttonsLeft {
-    margin-right: 3vw;
+    margin-right: 0.5vw;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 
     & Button {
-      margin-left: 1vw;
+      margin-left: 0.5vw;
     }
   }
 }
