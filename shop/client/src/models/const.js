@@ -1,5 +1,17 @@
 export const CATEGORY_ALL = 'All';
 
+export const MUSIC_CATEGORIES = {
+    POP: 'Pop',
+    HIPHOP: 'Hip Hop',
+    ROCK: 'Rock',
+    ELECTRONIC: 'Electronic',
+    METAL: 'Metal',
+    JAZZ: 'Jazz',
+    BLUES: 'Blues',
+    CLASSICAL: 'Classical',
+    REGGAE: 'Reggae'
+}
+
 
 export const formItemLayout = {
     labelCol: {

@@ -5,8 +5,6 @@ import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LogoutOutlined } from
 import { CATEGORY_ALL } from '../../models/const'
 import style from './top-bar-view.module.scss'
 
-
-
 export const TopBar = ({ props, mapDispatchToProps }) => {
 
     const { Option } = Select;

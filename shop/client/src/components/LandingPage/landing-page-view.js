@@ -2,30 +2,25 @@ import React, { useEffect, useState } from "react";
 import LandingPageStyles from "./landing-page-view.module.scss";
 import { LoadingOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Card, Button, message, Menu } from "antd";
-import { getWindowDimensions, getWindowWidth } from "../../models/common-method";
+import { MUSIC_CATEGORIES }  from '../../models/const'
+import { getWindowDimensions } from "../../models/common-method";
 
 const { Meta } = Card;
+const categories = [
+  MUSIC_CATEGORIES.BLUES,
+  MUSIC_CATEGORIES.CLASSICAL,
+  MUSIC_CATEGORIES.ELECTRONIC,
+  MUSIC_CATEGORIES.HIPHOP,
+  MUSIC_CATEGORIES.JAZZ,
+  MUSIC_CATEGORIES.METAL,
+  MUSIC_CATEGORIES.POP,
+  MUSIC_CATEGORIES.REGGAE,
+  MUSIC_CATEGORIES.ROCK
+]
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
-  const [widthToDrawer, setWidthToDrawer] = useState();
+
   const [widthToMenu, setwidthToMenu] = useState()
-  const categories = ['Pop', 'Rock', 'Hip Hop', 'Indie', 'Soul', 'Jazz', 'Metal', 'Country', 'Electronic']
-
-  const handleResize = () => {
-    const { width } = getWindowDimensions();
-    
-    if (width > 1000) {
-      setWidthToDrawer("23vw");
-    } else {
-      setWidthToDrawer("33vw");
-    }
-
-    if(width > 768){
-      setwidthToMenu(`${(100/(categories.length))}vw`)
-    }else if (width <= 768){
-      setwidthToMenu('');
-    }
-  };
 
   useEffect(() => {
     mapDispatchToProps.uploadItems();
@@ -34,8 +29,21 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
       document.querySelector('div#root').style.backgroundColor = '';
+      
     };
   }, [props.user]);
+
+
+  const handleResize = () => {
+    const { width } = getWindowDimensions();
+
+    if(width > 768){
+      setwidthToMenu(`${(100/(categories.length))}vw`)
+    }else if (width <= 768){
+      setwidthToMenu('');
+    }
+  };
+
 
   const addItem = (element) => {
     if (props.user) {
@@ -44,6 +52,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
       message.error("Only authenticated user can add products to Cart!", 1.5);
     }
   };
+
 
   const showItems = () => {
     return props.items.map((element, index) => {
@@ -77,6 +86,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     });
   };
 
+
   const loadItems = () => {
     if (props.loading) {
       return (
@@ -93,6 +103,7 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
     }
   };
 
+
   const switchCategory = (category) => {
     console.log(category);
     switch(category){
@@ -104,9 +115,9 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         document.querySelector('div#root').style.backgroundColor = 'pink'
         break;
       }
+      default:
     }
   }
-
 
 
   return(
