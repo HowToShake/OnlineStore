@@ -14,7 +14,7 @@ const categories = [
   MUSIC_CATEGORIES.JAZZ,
   MUSIC_CATEGORIES.METAL,
   MUSIC_CATEGORIES.POP,
-  MUSIC_CATEGORIES.REGGAE,
+  //MUSIC_CATEGORIES.REGGAE,
   MUSIC_CATEGORIES.ROCK
 ]
 
@@ -133,12 +133,12 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
 
 
   const carouselContentStyle = {
-    marginTop: '40px',
-    width: '90vw',
-    marginLeft: '5vw',
-    marginRight: '5vw',
+    marginTop: '60px',
+    width: '80vw',
+    marginLeft: '10vw',
+    marginRight: '10vw',
     color: '#fff',
-    lineHeight: '160px',
+    lineHeight: '30vh',
     textAlign: 'center',
     background: '#364d79',
   }
