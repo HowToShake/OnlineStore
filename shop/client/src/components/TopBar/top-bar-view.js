@@ -24,7 +24,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     
                     <Button style={{border: 'none', backgroundColor: 'transparent'}}>Welcome back, {props.user.name}</Button>
                     <Link to="/">
-                        <Button icon={<HomeOutlined />} onClick={mapDispatchToProps.onHomeButtonClicked}>Home</Button>
+                        <Button icon={<HomeOutlined />}>Home</Button>
                     </Link>
 
                     <Link to="/cart">
@@ -41,7 +41,7 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
             return(
                 <>
                     <Link to="/">
-                        <Button icon={<HomeOutlined />} onClick={mapDispatchToProps.onHomeButtonClicked}>Home</Button>
+                        <Button icon={<HomeOutlined />}>Home</Button>
                     </Link>
 
                     <Link to="/auth">

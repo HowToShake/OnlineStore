@@ -1,6 +1,7 @@
 export const CATEGORY_ALL = 'All';
 
 export const MUSIC_CATEGORIES = {
+    ALL: 'All',
     POP: 'Pop',
     HIPHOP: 'Hip Hop',
     ROCK: 'Rock',

@@ -7,6 +7,7 @@ import { getWindowDimensions } from "../../models/common-method";
 
 const { Meta } = Card;
 const categories = [
+  MUSIC_CATEGORIES.ALL,
   MUSIC_CATEGORIES.BLUES,
   MUSIC_CATEGORIES.CLASSICAL,
   MUSIC_CATEGORIES.ELECTRONIC,
@@ -14,25 +15,18 @@ const categories = [
   MUSIC_CATEGORIES.JAZZ,
   MUSIC_CATEGORIES.METAL,
   MUSIC_CATEGORIES.POP,
-  //MUSIC_CATEGORIES.REGGAE,
   MUSIC_CATEGORIES.ROCK
 ]
 
 export const LandingPage = ({ props, mapDispatchToProps }) => {
 
   const [widthToMenu, setwidthToMenu] = useState()
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState(MUSIC_CATEGORIES.ALL)
 
   useEffect(() => {
     mapDispatchToProps.uploadItems();
     window.addEventListener("resize", handleResize);
     handleResize();
-
-    if(props.wasHomeOrMenuPressed){
-      setSelectedCategory('');
-      switchCategory('');
-    }
-
     return () => {
       window.removeEventListener("resize", handleResize);
       document.querySelector('div#root').style.backgroundColor = '';
@@ -112,22 +106,46 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
 
 
   const switchCategory = (category) => {
-    mapDispatchToProps.onCategoryButtonWasPressed();
     setSelectedCategory(category);
 
     switch(category){
-      case 'Pop': {
+
+      case MUSIC_CATEGORIES.ALL:
+        default:
+          document.querySelector('div#root').style.backgroundColor = '';
+          break;
+
+      case MUSIC_CATEGORIES.BLUES:
+        document.querySelector('div#root').style.backgroundColor = '#FAF1F1';
+        break;
+
+      case MUSIC_CATEGORIES.CLASSICAL:
+        document.querySelector('div#root').style.backgroundColor = '#AABBCC';
+        break;
+
+      case MUSIC_CATEGORIES.ELECTRONIC:
+        document.querySelector('div#root').style.backgroundColor = '#11FF33';
+        break;
+      
+      case MUSIC_CATEGORIES.HIPHOP:
+        document.querySelector('div#root').style.backgroundColor = '#ABCDEF';
+        break;
+
+      case MUSIC_CATEGORIES.JAZZ:
+        document.querySelector('div#root').style.backgroundColor = '#123456';
+        break;
+
+      case MUSIC_CATEGORIES.METAL:
+        document.querySelector('div#root').style.backgroundColor = '#0F0F0F0F';
+        break;
+
+      case MUSIC_CATEGORIES.POP: 
         document.querySelector('div#root').style.backgroundColor ='#F4D7D7'
         break;
-      }
-      case 'Rock' :{
+      
+      case MUSIC_CATEGORIES.ROCK:
         document.querySelector('div#root').style.backgroundColor = 'pink'
-        break;
-      }
-      default:{
-        document.querySelector('div#root').style.backgroundColor = '';
-        break;
-      }
+        break; 
     }
   }
 
@@ -177,15 +195,20 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
 
     <Carousel>
       <div>
-        <h3 style={carouselContentStyle}>TEST</h3>
+        <h3 style={carouselContentStyle}>WELCOME ON OUR ONLINE STORE</h3>
       </div>
       <div>
-        <h3 style={carouselContentStyle}>TEST2</h3>
+        <h3 style={carouselContentStyle}>IF YOU ARE LOOKING FOR SOME REALLY GOOD MUSIC CHOOSE INTERESTING YOU CATEGORY</h3>
       </div>
       <div>
-        <h2 style={carouselContentStyle}>{selectedCategory}</h2>
+        <h2 style={carouselContentStyle}>YOU ARE ACTUALLY IN: {selectedCategory} CATEGORY.</h2>
       </div>
     </Carousel>
+
+
+      <div>
+        SEARCH FOR ALL MUSIC IN {selectedCategory} CATEGORY.
+      </div>
 
     </>
   )
