@@ -55,35 +55,34 @@ router.post("/", (req, res) => {
   });
 });
 
+
+router.put("/order/:userID/:orderID", (req,res) => {
+  User.updateOne(
+    {_id: req.params.userID, "orders._id": req.params.orderID },
+    {$set: {"orders.$.status": 'Resolved' } },
+   )
+  .then(order => res.json({success: true}))
+  .catch((err) => res.status(404).json({ success: false }));
+
+})
+
+
 router.put("/:id", (req, res) => {
+
+  const {orderedItems, price, receiverInfo, status = "Pending"} = req.body
   User.updateOne({
     $push: {
       orders: [
         {
-          status: "Pending",
-          orderedItems: [
-            {
-              itemID: "5f2e859c4c3aaa23e0de220a",
-              amount: "3",
-            },
-            {
-              itemID: "5f2e882745fded2e6835a68e",
-              amount: "1",
-            },
-          ],
-          price: "$5",
-          receiverInfo: {
-            name: "JA",
-            surname: "MY",
-            address: "ULICA 16 MIASTO, KOD-POCZTOWY",
-            phoneNumber: "+48 123 456 789",
-            deliveryMethod: "PACZKOMAT",
-          },
+          status,
+          orderedItems,
+          price,
+          receiverInfo,
         },
       ],
     },
   })
-    .then((items) => res.json({ success: true }))
+    .then(order => res.json({ success: true }))
     .catch((err) => res.status(404).json({ success: false }));
 });
 
