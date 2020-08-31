@@ -37,6 +37,12 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     <Link to="/">
                         <Button icon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()} style={{color: 'red'}}>Logout</Button>
                     </Link>
+
+                    {props.user.role === 'admin' ? <>
+                    <Link to="/admin">
+                        <Button icon={<LogoutOutlined />}  style={{color: 'blue'}}>Admin</Button>
+                    </Link>
+                    </>: <></>}
                 </>
             )
         }else{
