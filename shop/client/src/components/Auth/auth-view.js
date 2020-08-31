@@ -10,11 +10,11 @@ export const Auth = ({props, mapDispatchToProps}) => {
     useEffect(() => {
     mapDispatchToProps.clearErrors();
 
-    if(props.isAuthenticated){
+    if(props.isAuthenticated && props.user){
         history.push('/')
     }
 
-    }, [props.isAuthenticated])
+    }, [props.isAuthenticated, props.user])
 
     const renderErrorMessage = () => {
         if(props.error.msg.msg !== undefined){

@@ -5,6 +5,7 @@ import { App } from './App-view'
 
 const mapStateToProps = state => ({
   props:{
+    user: state.auth.isAuthenticated,
   }
 });
 

@@ -6,6 +6,7 @@ const mapStateToProps = state => ({
   props:{
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
+    user: state.auth.user,
   }
 });
 

@@ -10,7 +10,7 @@ export const App = ({props, mapDispatchToProps}) => {
     useEffect(() => {
         mapDispatchToProps.clearErrors();
         mapDispatchToProps.loadUser();
-    }, [])
+    }, [props.user])
 
     return(
         <div className={AppStyle.App}>

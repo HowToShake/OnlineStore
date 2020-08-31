@@ -14,11 +14,14 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
     
     useEffect(() => {
         mapDispatchToProps.getDistinctCategories()
-    }, [])
+    }, [props.user])
 
 
     const renderButtons = () => {
-        if(props.isAuthenticated !== false && props.user !== null && props.token !== null){
+
+        
+
+        if(props.isAuthenticated && props.user && props.token ){
             return(
                 <>
                     
@@ -34,7 +37,6 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     <Link to="/">
                         <Button icon={<LogoutOutlined />} onClick={() => mapDispatchToProps.logout()} style={{color: 'red'}}>Logout</Button>
                     </Link>
-
                 </>
             )
         }else{
