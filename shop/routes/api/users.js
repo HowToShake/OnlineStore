@@ -55,21 +55,17 @@ router.post("/", (req, res) => {
   });
 });
 
-
-router.put("/order/:userID/:orderID", (req,res) => {
+router.put("/order/:userID/:orderID", (req, res) => {
   User.updateOne(
-    {_id: req.params.userID, "orders._id": req.params.orderID },
-    {$set: {"orders.$.status": 'Resolved' } },
-   )
-  .then(order => res.json({success: true}))
-  .catch((err) => res.status(404).json({ success: false }));
-
-})
-
+    { _id: req.params.userID, "orders._id": req.params.orderID },
+    { $set: { "orders.$.status": "Resolved" } }
+  )
+    .then((order) => res.json({ success: true }))
+    .catch((err) => res.status(404).json({ success: false }));
+});
 
 router.put("/:id", (req, res) => {
-
-  const {orderedItems, price, receiverInfo, status = "Pending"} = req.body
+  const { orderedItems, price, receiverInfo, status = "Pending" } = req.body;
   User.updateOne({
     $push: {
       orders: [
@@ -82,7 +78,13 @@ router.put("/:id", (req, res) => {
       ],
     },
   })
-    .then(order => res.json({ success: true }))
+    .then((order) => res.json({ success: true }))
+    .catch((err) => res.status(404).json({ success: false }));
+});
+
+router.delete("/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then((item) => item.remove().then(() => res.json({ success: true })))
     .catch((err) => res.status(404).json({ success: false }));
 });
 
