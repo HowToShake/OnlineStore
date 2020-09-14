@@ -2,21 +2,26 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
-  name: {
+  albumName: {
+    type: String,
+    required: true,
+  },
+  band:{
     type: String,
     required: true,
   },
   category: {
     type: String,
-    // required: true,
+    required: true,
   },
-  size: {
+  type: {
     type: String,
-    //required: true,
+    required: true,
+    enum: ["CD", "VINYL", "DVD", "MP3"],
+    default: "CD",
   },
   price: {
     type: Number,
-    //required: true,
   },
   amount: {
     type: Number,

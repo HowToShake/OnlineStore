@@ -5,9 +5,10 @@ const Item = require("../../models/Item");
 
 router.post("/", (req, res) => {
   const newItem = new Item({
-    name: req.body.name,
+    albumName: req.body.albumName,
+    band: req.body.band,
     category: req.body.category,
-    size: req.body.size,
+    type: req.body.type,
     price: req.body.price,
     amount: req.body.amount,
     imgURL: req.body.imgURL,
