@@ -2,6 +2,9 @@ import { connect } from "react-redux";
 import { LandingPage } from "./landing-page-view";
 import { uploadItems } from "../../redux/actions/items";
 import { addItemToCart } from "../../redux/actions/cart";
+import {
+  getDistinctCategories,
+} from "../../redux/actions/items";
 
 const mapStateToProps = (state) => ({
   props: {
@@ -16,6 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
     uploadItems: () => dispatch(uploadItems()),
     onAddItemToCartWasPressed: (selectedItem) =>
       dispatch(addItemToCart(selectedItem)),
+    getDistinctCategories: () => dispatch(getDistinctCategories()),
   },
 });
 

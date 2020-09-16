@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
-import { useEffect } from "react";
 import { formItemLayout } from "../../../models/const";
 
 export const Register = ({ props, mapDispatchToProps }) => {
