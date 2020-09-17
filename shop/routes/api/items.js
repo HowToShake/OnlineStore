@@ -1,63 +1,62 @@
-const express = require("express");
-const router = express.Router();
+const express = require("express")
+const router = express.Router()
 
-const Item = require("../../models/Item");
+const Item = require("../../models/Item")
 
 router.post("/", (req, res) => {
-  const newItem = new Item({
-    albumName: req.body.albumName,
-    band: req.body.band,
-    category: req.body.category,
-    type: req.body.type,
-    price: req.body.price,
-    amount: req.body.amount,
-    imgURL: req.body.imgURL,
-  });
+    const newItem = new Item({
+        albumName: req.body.albumName,
+        band: req.body.band,
+        category: req.body.category,
+        type: req.body.type,
+        price: req.body.price,
+        amount: req.body.amount,
+        imgURL: req.body.imgURL,
+    })
 
-  newItem.save().then((item) => res.json(item));
-});
+    newItem.save().then((item) => res.json(item))
+})
 
 router.get("/", (req, res) => {
-  Item.find()
-    .sort({ date: -1 })
-    .then((items) => res.json(items));
-});
+    Item.find()
+        .sort({ date: -1 })
+        .then((items) => res.json(items))
+})
 
 router.get("/search?", (req, res) => {
-  const { searchValue, selectedCategory } = req.query;
+    const { searchValue, selectedCategory } = req.query
 
-
-  if (selectedCategory === "All") {
-    Item.find({ albumName: { $regex: searchValue } })
-      .sort({ albumName: 1 })
-      .then((items) => res.json(items));
-  } else {
-    Item.find({
-      albumName: { $regex: searchValue },
-      category: { $regex: selectedCategory },
-    })
-      .sort({ category: 1 })
-      .then((items) => res.json(items));
-  }
-});
+    if (selectedCategory === "All") {
+        Item.find({ albumName: { $regex: searchValue } })
+            .sort({ albumName: 1 })
+            .then((items) => res.json(items))
+    } else {
+        Item.find({
+            albumName: { $regex: searchValue },
+            category: { $regex: selectedCategory },
+        })
+            .sort({ category: 1 })
+            .then((items) => res.json(items))
+    }
+})
 
 router.get("/categories", (req, res) => {
-  Item.distinct("category").then((categories) => res.json(categories));
-});
+    Item.distinct("category").then((categories) => res.json(categories))
+})
 
 router.delete("/:id", (req, res) => {
-  Item.findById(req.params.id)
-    .then((item) => item.remove().then(() => res.json({ success: true })))
-    .catch((err) => res.status(404).json({ success: false }));
-});
+    Item.findById(req.params.id)
+        .then((item) => item.remove().then(() => res.json({ success: true })))
+        .catch((err) => res.status(404).json({ success: false }))
+})
 
 router.put("/:id", (req, res) => {
-  console.log(req.body);
-  Item.updateOne({
-    name: "Water",
-  })
-    .then((items) => res.json({ success: true }))
-    .catch((err) => res.status(404).json({ success: false }));
-});
+    console.log(req.body)
+    Item.updateOne({
+        name: "Water",
+    })
+        .then((items) => res.json({ success: true }))
+        .catch((err) => res.status(404).json({ success: false }))
+})
 
-module.exports = router;
+module.exports = router

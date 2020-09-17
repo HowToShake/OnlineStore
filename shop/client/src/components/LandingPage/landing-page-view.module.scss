@@ -1,14 +1,14 @@
 .Container {
-  position: relative;
-  max-width: 99vw;
-
-  & .CardContainer {
     position: relative;
     max-width: 99vw;
-    height: auto;
-    display: flex;
-    justify-content: start;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+
+    & .CardContainer {
+        position: relative;
+        max-width: 99vw;
+        height: auto;
+        display: flex;
+        justify-content: start;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }
