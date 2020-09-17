@@ -1,6 +1,8 @@
-.Container {
-    position: relative;
-    max-width: 99vw;
+.container {
+    border: 1px solid red;
+    width: 94vw;
+    margin: 0 3vw 0 3vw;
+    padding: 0 1vw 0 1vw;
 
     & .CardContainer {
         position: relative;

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
-import LandingPageStyles from "./landing-page-view.module.scss"
+import style from "./landing-page-view.module.scss"
 import { ShoppingCartOutlined } from "@ant-design/icons"
-import { Card, Button, message, Menu, Carousel } from "antd"
+import "antd/dist/antd.css"
+import { Card, Button, message, Menu, Carousel, Row, Col } from "antd"
 
 import { getWindowDimensions } from "../../models/common-method"
 
@@ -82,5 +83,65 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         background: "#364d79",
     }
 
-    return <></>
+    return (
+        <>
+            <div className={style.container}>
+                <Row gutter={[40, 24]}>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                </Row>
+            </div>
+            <div className={style.container}>
+                <Row gutter={[40, 24]}>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                </Row>
+            </div>
+            <div className={style.container}>
+                <Row gutter={[40, 24]}>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                    <Col span={8}>
+                        <Card title="Card title" bordered={true}>
+                            Card content
+                        </Card>
+                    </Col>
+                </Row>
+            </div>
+        </>
+    )
 }
