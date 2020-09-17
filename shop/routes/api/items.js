@@ -26,13 +26,14 @@ router.get("/", (req, res) => {
 router.get("/search?", (req, res) => {
   const { searchValue, selectedCategory } = req.query;
 
+
   if (selectedCategory === "All") {
-    Item.find({ name: { $regex: searchValue } })
-      .sort({ name: 1 })
+    Item.find({ albumName: { $regex: searchValue } })
+      .sort({ albumName: 1 })
       .then((items) => res.json(items));
   } else {
     Item.find({
-      name: { $regex: searchValue },
+      albumName: { $regex: searchValue },
       category: { $regex: selectedCategory },
     })
       .sort({ category: 1 })

@@ -2,15 +2,14 @@ import { connect } from "react-redux";
 import { LandingPage } from "./landing-page-view";
 import { uploadItems } from "../../redux/actions/items";
 import { addItemToCart } from "../../redux/actions/cart";
-import {
-  getDistinctCategories,
-} from "../../redux/actions/items";
+import { getDistinctCategories } from "../../redux/actions/items";
 
 const mapStateToProps = (state) => ({
   props: {
     items: state.items.items,
     loading: state.items.loading,
     user: state.auth.user,
+    categories: state.items.categories,
   },
 });
 

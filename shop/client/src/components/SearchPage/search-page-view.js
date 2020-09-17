@@ -1,13 +1,12 @@
 import React from "react";
 
 export const SearchPage = ({ props, mapDispatchToProps }) => {
-  console.log(props);
 
   const renderSearchedItems = () => {
     return (
       <>
         {props.searchedItems.map((el, index) => {
-          return <h1 key={index}>{el.name}</h1>;
+          return <h1 key={index}>{el.albumName}</h1>;
         })}
       </>
     );
