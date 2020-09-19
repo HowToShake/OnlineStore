@@ -5,12 +5,15 @@ import "antd/dist/antd.css"
 import { Card, Button, message, Menu, Carousel, Row, Col } from "antd"
 
 import { getWindowDimensions } from "../../models/common-method"
+import { useHistory } from "react-router-dom"
 
 const { Meta } = Card
 
-export const LandingPage = ({ props, mapDispatchToProps }) => {
-    const [widthToMenu, setwidthToMenu] = useState()
 
+
+export const LandingPage = ({ props, mapDispatchToProps }) => {
+    let history = useHistory();
+    const [widthToMenu, setwidthToMenu] = useState()
     useEffect(() => {
         mapDispatchToProps.uploadItems()
         window.addEventListener("resize", handleResize)
@@ -72,13 +75,16 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         })
     }
 
+    renderCategoryFields = () => {
+        
+    }
+
     return (
         <>
             <div className={style.container}>
-                <div id={style.blues}>
-                    <div onClick={() => console.log('xD')}>
+                
+                <div id={style.blues} onClick={() => history.push('/category?blues')}>
                         Blues
-                    </div>
                 </div>
                 <div id={style.rock}> xD </div>
                 <div id={style.metal}> xD </div>

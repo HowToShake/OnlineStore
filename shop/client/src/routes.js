@@ -4,6 +4,7 @@ import LandingPage from "./components/LandingPage/landing-page-connected"
 import Auth from "./components/Auth/auth-connected"
 import Cart from "./components/Cart/cart-connected"
 import SearchPage from "./components/SearchPage/search-page-connected"
+import CategoryView from "./components/Category/category-view"
 
 const ROUTES = [
     { path: "/", key: "ROOT", exact: true, component: LandingPage },
@@ -29,6 +30,12 @@ const ROUTES = [
                 key: "APP_SEARCH",
                 exact: false,
                 component: SearchPage,
+            },
+            {
+                path: "/category",
+                key: "APP_CATEGORY",
+                exact: false,
+                component: CategoryView,
             },
         ],
     },
