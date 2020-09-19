@@ -72,75 +72,22 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         })
     }
 
-    const carouselContentStyle = {
-        marginTop: "60px",
-        width: "80vw",
-        marginLeft: "10vw",
-        marginRight: "10vw",
-        color: "#fff",
-        lineHeight: "30vh",
-        textAlign: "center",
-        background: "#364d79",
-    }
-
     return (
         <>
             <div className={style.container}>
-                <Row gutter={[40, 24]}>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                </Row>
-            </div>
-            <div className={style.container}>
-                <Row gutter={[40, 24]}>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                </Row>
-            </div>
-            <div className={style.container}>
-                <Row gutter={[40, 24]}>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card title="Card title" bordered={true}>
-                            Card content
-                        </Card>
-                    </Col>
-                </Row>
+                <div id={style.blues}>
+                    <div onClick={() => console.log('xD')}>
+                        Blues
+                    </div>
+                </div>
+                <div id={style.rock}> xD </div>
+                <div id={style.metal}> xD </div>
+                <div id={style.hiphop}> xD </div>
+                <div id={style.rap}> xD </div>
+                <div id={style.pop}> xD </div>
+                <div id={style.classic}> xD </div>
+                <div id={style.electronic}> xD </div>
+                <div id={style.jazz}> xD </div>
             </div>
         </>
     )
