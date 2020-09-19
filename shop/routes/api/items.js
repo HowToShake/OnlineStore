@@ -28,16 +28,24 @@ router.get("/search?", (req, res) => {
 
     if (selectedCategory === "All") {
         Item.find({ albumName: { $regex: searchValue } })
-            .sort({ albumName: 1 })
+            .sort({ albumName: -1 })
             .then((items) => res.json(items))
     } else {
         Item.find({
             albumName: { $regex: searchValue },
             category: { $regex: selectedCategory },
         })
-            .sort({ category: 1 })
+            .sort({ category: -1 })
             .then((items) => res.json(items))
     }
+})
+
+router.get("/category?", (req, res) => {
+    const { selectedCategory } = req.query;
+
+    Item.find({category: {$regex: selectedCategory}})
+        .sort({band: 1})
+        .then((items) => res.json(items));
 })
 
 router.get("/categories", (req, res) => {

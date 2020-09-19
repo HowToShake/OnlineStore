@@ -2,17 +2,15 @@ import React, { useEffect, useState } from "react"
 import style from "./landing-page-view.module.scss"
 import { ShoppingCartOutlined } from "@ant-design/icons"
 import "antd/dist/antd.css"
-import { Card, Button, message, Menu, Carousel, Row, Col } from "antd"
+import { Card, Button, message } from "antd"
 
 import { getWindowDimensions } from "../../models/common-method"
 import { useHistory } from "react-router-dom"
 
 const { Meta } = Card
 
-
-
 export const LandingPage = ({ props, mapDispatchToProps }) => {
-    let history = useHistory();
+    let history = useHistory()
     const [widthToMenu, setwidthToMenu] = useState()
     useEffect(() => {
         mapDispatchToProps.uploadItems()
@@ -75,25 +73,36 @@ export const LandingPage = ({ props, mapDispatchToProps }) => {
         })
     }
 
-    renderCategoryFields = () => {
-        
-    }
-
     return (
         <>
             <div className={style.container}>
-                
-                <div id={style.blues} onClick={() => history.push('/category?blues')}>
-                        Blues
+                <div id={style.blues} onClick={() => history.push(`/category?Blues`)}>
+                    Blues
                 </div>
-                <div id={style.rock}> xD </div>
-                <div id={style.metal}> xD </div>
-                <div id={style.hiphop}> xD </div>
-                <div id={style.rap}> xD </div>
-                <div id={style.pop}> xD </div>
-                <div id={style.classic}> xD </div>
-                <div id={style.electronic}> xD </div>
-                <div id={style.jazz}> xD </div>
+                <div id={style.rock} onClick={() => history.push(`/category?Rock`)}>
+                    Rock
+                </div>
+                <div id={style.metal} onClick={() => history.push(`/category?Metal`)}>
+                    Metal
+                </div>
+                <div id={style.hiphop} onClick={() => history.push(`/category?Hiphop`)}>
+                    HipHop
+                </div>
+                <div id={style.rap} onClick={() => history.push(`/category?Rap`)}>
+                    Rap
+                </div>
+                <div id={style.pop} onClick={() => history.push(`/category?Pop`)}>
+                    Pop
+                </div>
+                <div id={style.classical} onClick={() => history.push(`/category?Classical`)}>
+                    Classical
+                </div>
+                <div id={style.electronic} onClick={() => history.push(`/category?Electronic`)}>
+                    Electronic
+                </div>
+                <div id={style.jazz} onClick={() => history.push(`/category?Jazz`)}>
+                    Jazz
+                </div>
             </div>
         </>
     )

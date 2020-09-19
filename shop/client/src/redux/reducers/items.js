@@ -3,6 +3,7 @@ const initialItems = {
     loading: false,
     searchedItems: [],
     categories: [],
+    musicInParticularCategory: [],
 }
 
 export const itemReducer = (state = initialItems, action) => {
@@ -30,6 +31,12 @@ export const itemReducer = (state = initialItems, action) => {
             return {
                 ...state,
                 categories: action.categories,
+            }
+
+        case "GET_MUSIC_IN_CATEGORY":
+            return{
+                ...state,
+                musicInParticularCategory: action.payload,
             }
 
         default: {

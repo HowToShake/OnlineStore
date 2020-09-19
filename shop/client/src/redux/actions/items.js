@@ -41,3 +41,15 @@ export const getDistinctCategories = () => (dispatch) => {
         })
         .catch((err) => console.log(err))
 }
+
+export const getItemsInParticularCategory = (category) => (dispatch) => {
+    axios
+        .get(`http://localhost:5000/api/items/category?selectedCategory=${category}`)
+        .then((res) => {
+            dispatch({
+                type: "GET_MUSIC_IN_CATEGORY",
+                payload: res.data
+            })
+        })
+        .catch((err) => console.log(err));
+}
