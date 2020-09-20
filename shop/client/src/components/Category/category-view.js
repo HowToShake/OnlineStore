@@ -34,7 +34,7 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
                     <div className={style.cardContainer}>
                         {props.musicInParticularCategory.map((el, index) => {
                             if (el.band === uniqueBand) {
-                                const price = `Price: ${el.price} `
+                                const price = `Price: ${el.price}$ `
                                 let available = "available"
                                 if (el.amount === 0) {
                                     available = "unavailable"

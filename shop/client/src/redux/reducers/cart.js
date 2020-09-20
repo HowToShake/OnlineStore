@@ -4,6 +4,7 @@ const initialState = {
     userID: "",
 }
 
+
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_ITEM_TO_CART":
@@ -11,6 +12,12 @@ export const cartReducer = (state = initialState, action) => {
                 ...state,
                 order: [...state.order, action.payload],
             }
+        case "REMOVE_ITEM_FROM_CART":
+            return{
+                ...state,
+                order: [...state.order],
+            
+        }
         case "CREATE_NEW_ORDER":
             return {
                 ...state,
