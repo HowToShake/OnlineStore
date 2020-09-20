@@ -1,7 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
+import NotFoundPage from '../404/404-view'
 
 export const Admin = ({props, mapDispatchToProps}) => {
 
 
-return<> {props.role !== 'admin' ? null :  <div>Admin</div>} </>
+return<> {props.role !== 'admin' ? <NotFoundPage /> :  <div>Admin</div>} </>
 }

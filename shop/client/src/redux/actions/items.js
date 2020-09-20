@@ -43,6 +43,7 @@ export const getDistinctCategories = () => (dispatch) => {
 }
 
 export const getItemsInParticularCategory = (category) => (dispatch) => {
+    dispatch(setItemsLoading())
     axios
         .get(`http://localhost:5000/api/items/category?selectedCategory=${category}`)
         .then((res) => {

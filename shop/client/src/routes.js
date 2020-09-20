@@ -6,6 +6,7 @@ import Cart from "./components/Cart/cart-connected"
 import SearchPage from "./components/SearchPage/search-page-connected"
 import CategoryView from "./components/Category/category-connected"
 import Admin from "./components/Admin/admin-connected"
+import NotFoundPage from './components/404/404-view'
 
 const ROUTES = [
     { path: "/", key: "ROOT", exact: true, component: LandingPage },
@@ -60,7 +61,7 @@ export function RenderRoutes({ routes }) {
             {routes.map((route, i) => {
                 return <RouteWithSubRoutes key={route.key} {...route} />
             })}
-            <Route component={() => <h1>Not Found!</h1>} />
+            <Route component={NotFoundPage}/>
         </Switch>
     )
 }

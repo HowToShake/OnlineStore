@@ -34,9 +34,10 @@ export const itemReducer = (state = initialItems, action) => {
             }
 
         case "GET_MUSIC_IN_CATEGORY":
-            return{
+            return {
                 ...state,
                 musicInParticularCategory: action.payload,
+                loading: false,
             }
 
         default: {

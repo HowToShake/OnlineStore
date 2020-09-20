@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
-import { Card } from "antd"
+import { Card, Button, message } from "antd"
+import { ShoppingCartOutlined, LoadingOutlined } from "@ant-design/icons"
 import style from "./category-view.module.scss"
 import Meta from "antd/lib/card/Meta"
 
@@ -12,6 +13,14 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
     const uniqueBands = [...new Set(props.musicInParticularCategory.map((item) => item.band))]
     const multipleUniqueBands = uniqueBands.concat(uniqueBands).sort()
 
+    const addItem = (element) => {
+        if (props.user) {
+            mapDispatchToProps.onAddItemToCartWasPressed(element)
+        } else {
+            message.error("Only authenticated user can add products to Cart!", 1.5)
+        }
+    }
+
     const renderUniqueBands = () => {
         return multipleUniqueBands.map((uniqueBand, index) => {
             if (multipleUniqueBands[index] === multipleUniqueBands[index + 1])
@@ -21,17 +30,37 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
                     </>
                 )
             else {
-                return(
+                return (
                     <div className={style.cardContainer}>
                         {props.musicInParticularCategory.map((el, index) => {
-                            if (el.band === uniqueBand)
+                            if (el.band === uniqueBand) {
+                                const price = `Price: ${el.price} `
+                                let available = "available"
+                                if (el.amount === 0) {
+                                    available = "unavailable"
+                                }
+
                                 return (
                                     <>
-                                        <Card className={style.Card}>
-                                            <Meta title={el.albumName} description="placeholder" />
+                                        <Card
+                                            key={el.albumName + index}
+                                            cover={
+                                                <img
+                                                    alt="img"
+                                                    src={"xd"} //TODO add el.imgURL
+                                                />
+                                            }
+                                            actions={[
+                                                <Button onClick={() => addItem(el)}>
+                                                    <ShoppingCartOutlined />
+                                                </Button>,
+                                            ]}
+                                            className={style.Card}>
+                                            <Meta  key={el.albumName + index + price} title={el.albumName} description={price + available} />
                                         </Card>
                                     </>
                                 )
+                            }
                         })}
                     </div>
                 )
@@ -39,9 +68,5 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
         })
     }
 
-    return (
-        <>
-            <div className={style.container}>{renderUniqueBands()}</div>
-        </>
-    )
+    return <>{props.areItemsLoading ? <LoadingOutlined /> : <div className={style.container}>{renderUniqueBands()}</div>}</>
 }

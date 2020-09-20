@@ -1,5 +1,14 @@
+$blues-img: url("../../assets/img/Blues.png");
+$rock-img: url("../../assets/img/Rock.png");
+$metal-img: url("../../assets/img/Metal.png");
+$hiphop-img: url("../../assets/img/HipHop.png");
+$rap-img: url("../../assets/img/Rap.png");
+$pop-img: url("../../assets/img/Pop.png");
+$classical-img: url("../../assets/img/Classical.png");
+$electronic-img: url("../../assets/img/Electronic.png");
+$jazz-img: url("../../assets/img/Jazz.png");
+
 .container {
-    border: 1px solid red;
     width: 100vw;
     display: grid;
 
@@ -7,7 +16,6 @@
     grid-template-rows: 30.5vh 30.5vh 30.5vh;
 
     .gridStyle {
-        border: 1px dashed #222222;
         width: 75%;
         height: 60%;
         place-self: center;
@@ -15,57 +23,79 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.9;
+        border-radius: 5px;
+
+        font-size: 4rem;
+        color: rgb(255, 255, 255);
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     #blues {
         grid-column-start: 2;
         grid-row-start: 1;
         @extend .gridStyle;
+        background-image: $blues-img;
     }
 
     #rock {
         grid-column-start: 4;
         grid-row-start: 1;
         @extend .gridStyle;
+        background-image: $rock-img;
     }
 
     #metal {
         grid-column-start: 6;
         grid-row-start: 1;
         @extend .gridStyle;
+        background-image: $metal-img;
     }
     #hiphop {
         grid-column-start: 2;
         grid-row-start: 2;
         @extend .gridStyle;
+        background-image: $hiphop-img;
     }
 
     #rap {
         grid-column-start: 4;
         grid-row-start: 2;
         @extend .gridStyle;
+        background-image: $rap-img;
     }
 
     #pop {
         grid-column-start: 6;
         grid-row-start: 2;
         @extend .gridStyle;
+        background-image: $pop-img;
     }
     #classical {
         grid-column-start: 2;
         grid-row-start: 3;
         @extend .gridStyle;
+        background-image: $classical-img;
     }
 
     #electronic {
         grid-column-start: 4;
         grid-row-start: 3;
         @extend .gridStyle;
+        background-image: $electronic-img;
     }
 
     #jazz {
         grid-column-start: 6;
         grid-row-start: 3;
         @extend .gridStyle;
+        background-image: $jazz-img;
     }
 }
