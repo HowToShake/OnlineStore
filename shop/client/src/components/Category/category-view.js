@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import style from './category-view.module.scss'
 
 export const CategoryView = ({ props, mapDispatchToProps }) => {
     useEffect(() => {
@@ -17,14 +18,14 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
                         firstTime = false
                         return (
                             <>
-                                <p key={index}>{el.band}</p>
-                                <p key={el}>{el.albumName}</p>
+                                <h1 key={el.band}>{el.band}</h1>
+                                <p key={el.albumName}>{el.albumName}</p>
                             </>
                         )
                     } else {
                         return (
                             <>
-                                <p key={el}>{el.albumName}</p>
+                                <p key={el.albumName}>{el.albumName}</p>
                             </>
                         )
                     }
@@ -33,5 +34,6 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
         })
     }
 
-    return <div>{renderUniqueBands()}</div>
+    return(
+         <div className={style.container}>{renderUniqueBands()}</div>)
 }

@@ -1,0 +1,14 @@
+.container{
+    border: 1px solid red;
+    width: 100vw;
+
+    h1{
+        font-size: xx-large;
+        font-weight: 400;
+        color: gray;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.123);
+        margin: 0 1rem 0 1rem;
+        padding-top: 2rem;        
+    }
+}
