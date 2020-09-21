@@ -6,11 +6,26 @@
     grid-template-columns: 5vw 18vw 18vw 18vw 18vw 18vw 5vw;
     grid-template-rows: auto;
 
+
     .Card {
         border: 1px solid blue;
-        margin-left: 1rem;
+        margin-left: 30px;
+        margin-top: 30px;
         min-width: 200px;
         position: relative;
         width: 10vw;
+    }
+}
+
+.orderSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    border: 1px solid green;
+
+    .Submit{
+        width: 12vw;
+        height: 8vh;
     }
 }

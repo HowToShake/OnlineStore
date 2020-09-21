@@ -7,7 +7,8 @@ const mapStateToProps = (state) => ({
     props: {
         isAuthenticated: state.auth.isAuthenticated,
         user: state.auth.user,
-        cart: state.cart
+        cart: state.cart,
+        order: state.cart.order,
     },
 })
 

@@ -13,7 +13,6 @@ export const addItemToCart = (selectedItem) => {
 }
 
 export const removeItemFromCart = (selectedItem) => {
-    debugger;
     return{
         type: "REMOVE_ITEM_FROM_CART",
         payload: selectedItem,
