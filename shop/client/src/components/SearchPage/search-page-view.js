@@ -66,7 +66,6 @@ export const SearchPage = ({ props, mapDispatchToProps }) => {
 
     return (
         <>
-            <h1>SEARCH</h1>
             <div className={style.container}>{renderSearchedItems()}</div>
         </>
     )

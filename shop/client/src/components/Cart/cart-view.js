@@ -22,7 +22,28 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                 setTotalPrice(price.toFixed(2))
             }
         })
+
+        let order = []
+        const uniqueBands = [...new Set(props.cart.order.map((item) => item._id))]
+
+        uniqueBands.map((music, index) => {
+            let counter = 0
+            let buffer = {}
+            props.cart.order.map((element, index) => {
+                if (element._id === music) {
+                    counter++
+                }
+                if (index === props.cart.order.length - 1) {
+                   buffer[music] = counter;
+                   order = [...order, {...buffer}];
+                }
+            })
+        })
     }, [props.user, props.cart.order.length])
+
+    const onSubmitButtonWasClicked = () => {
+        history.push("/order")
+    }
 
     const renderUserCart = () => {
         let column = 2
@@ -38,7 +59,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                         } else {
                             column++
                         }
-                        const description = `Band: ${el.band} | Category: ${el.category} | Price: ${el.price}`;
+                        const description = `Band: ${el.band} | Category: ${el.category} | Price: ${el.price}`
                         return (
                             <Card
                                 key={el.albumName + index}
@@ -76,7 +97,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                         {props.order.length !== 0 && (
                             <>
                                 <h2>Total price: {`${totalPrice}$`}</h2>
-                                <Button type="primary" shape="round" className={style.Submit} onClick={() => history.push("/order")} size="large">
+                                <Button type="primary" shape="round" className={style.Submit} onClick={() => onSubmitButtonWasClicked()} size="large">
                                     Submit
                                 </Button>
                             </>
