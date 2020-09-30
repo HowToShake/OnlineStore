@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { Button, Card } from "antd"
 import { DeleteOutlined, RightCircleOutlined } from "@ant-design/icons"
@@ -6,17 +6,28 @@ import Meta from "antd/lib/card/Meta"
 import style from "./cart-view.module.scss"
 
 export const Cart = ({ props, mapDispatchToProps }) => {
-    let history = useHistory();
+    let history = useHistory()
+
+    const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
         if (props.user) {
             mapDispatchToProps.createUserCart(props.user._id)
         }
-    }, [props.user])
+
+        let price = 0
+        props.cart.order.map((el, index) => {
+            price += el.price
+            if (index === props.cart.order.length - 1) {
+                setTotalPrice(price.toFixed(2))
+            }
+        })
+    }, [props.user, props.cart.order.length])
 
     const renderUserCart = () => {
         let column = 2
         let row = 1
+
         return (
             <>
                 <div className={style.orderContainer}>
@@ -27,6 +38,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                         } else {
                             column++
                         }
+                        const description = `Band: ${el.band} | Category: ${el.category} | Price: ${el.price}`;
                         return (
                             <Card
                                 key={el.albumName + index}
@@ -43,7 +55,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                                 ]}
                                 className={style.Card}
                                 style={{ gridColumnStart: column, gridRowStart: row }}>
-                                <Meta key={el.albumName} title={el.albumName} description="placeholder" />
+                                <Meta key={el.albumName} title={el.albumName} description={description} />
                             </Card>
                         )
                     })}
@@ -54,16 +66,21 @@ export const Cart = ({ props, mapDispatchToProps }) => {
 
     return (
         <>
-            <h1>Your order:</h1>
+            <div className={style.header}>
+                <h1>Your order:</h1>
+            </div>
             {props.isAuthenticated && props.user !== null ? (
                 <>
                     {renderUserCart()}
                     <div className={style.orderSection}>
-                        {props.order.length !== 0 ? (
-                            <Button className={style.Submit} onClick={() => history.push('/order')}>
-                                Submit
-                            </Button>
-                        ) : null}
+                        {props.order.length !== 0 && (
+                            <>
+                                <h2>Total price: {`${totalPrice}$`}</h2>
+                                <Button type="primary" shape="round" className={style.Submit} onClick={() => history.push("/order")} size="large">
+                                    Submit
+                                </Button>
+                            </>
+                        )}
                     </div>
                 </>
             ) : (
