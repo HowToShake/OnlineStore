@@ -1,0 +1,31 @@
+.container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        font-size: xx-large;
+        font-weight: 400;
+        color: gray;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.123);
+        margin: 0 1rem 0 1rem;
+        padding-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .cardContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .Card {
+        margin-left: 1rem;
+        min-width: 200px;
+        position: relative;
+        width: 10vw;
+    }
+}
