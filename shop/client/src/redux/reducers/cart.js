@@ -2,6 +2,8 @@ const initialState = {
     id: "",
     order: [],
     userID: "",
+    totalPrice: "",
+    orderedItems: "",
 }
 
 export const cartReducer = (state = initialState, action) => {
@@ -34,7 +36,16 @@ export const cartReducer = (state = initialState, action) => {
                 order: [],
                 userID: "",
             }
-
+        case "SET_TOTAL_PRICE":
+            return {
+                ...state,
+                totalPrice: action.totalPrice,
+            }
+        case "SET_ORDERED_ITEMS":
+            return {
+                ...state,
+                orderedItems: action.orderedItems,
+            }
         default:
             return state
     }

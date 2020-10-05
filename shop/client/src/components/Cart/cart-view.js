@@ -4,11 +4,13 @@ import { Button, Card } from "antd"
 import { DeleteOutlined, RightCircleOutlined } from "@ant-design/icons"
 import Meta from "antd/lib/card/Meta"
 import style from "./cart-view.module.scss"
+import axios from "axios"
 
 export const Cart = ({ props, mapDispatchToProps }) => {
     let history = useHistory()
 
     const [totalPrice, setTotalPrice] = useState(0)
+    const [order, setOrder] = useState([])
 
     useEffect(() => {
         if (props.user) {
@@ -20,6 +22,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
             price += el.price
             if (index === props.cart.order.length - 1) {
                 setTotalPrice(price.toFixed(2))
+                mapDispatchToProps.setPrice(price.toFixed(2));
             }
         })
 
@@ -34,14 +37,16 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                     counter++
                 }
                 if (index === props.cart.order.length - 1) {
-                   buffer[music] = counter;
-                   order = [...order, {...buffer}];
+                    buffer[music] = counter
+                    order = [...order, { ...buffer }]
                 }
             })
         })
+        setOrder(order)
+        mapDispatchToProps.setOrderedItems(order);
     }, [props.user, props.cart.order.length])
 
-    const onSubmitButtonWasClicked = () => {
+    const onSubmitButtonClicked = () => {
         history.push("/order")
     }
 
@@ -59,7 +64,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                         } else {
                             column++
                         }
-                        const description = `Band: ${el.band} | Category: ${el.category} | Price: ${el.price}`
+                        const description = `Band: ${el.band} | Category: ${el.category} | Price: ${el.price}$`
                         return (
                             <Card
                                 key={el.albumName + index}
@@ -97,7 +102,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                         {props.order.length !== 0 && (
                             <>
                                 <h2>Total price: {`${totalPrice}$`}</h2>
-                                <Button type="primary" shape="round" className={style.Submit} onClick={() => onSubmitButtonWasClicked()} size="large">
+                                <Button type="primary" shape="round" className={style.Submit} onClick={() => onSubmitButtonClicked()} size="large">
                                     Submit
                                 </Button>
                             </>

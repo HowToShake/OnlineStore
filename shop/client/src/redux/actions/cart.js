@@ -13,7 +13,7 @@ export const addItemToCart = (selectedItem) => {
 }
 
 export const removeItemFromCart = (selectedItem) => {
-    return{
+    return {
         type: "REMOVE_ITEM_FROM_CART",
         payload: selectedItem,
     }
@@ -22,5 +22,19 @@ export const removeItemFromCart = (selectedItem) => {
 export const clearUserCart = () => {
     return {
         type: "CLEAR_USER_CART",
+    }
+}
+
+export const setTotalUserPrice = (totalPrice) => {
+    return {
+        type: "SET_TOTAL_PRICE",
+        totalPrice,
+    }
+}
+
+export const setOrderedItems = (orderedItems) => {
+    return {
+        type: "SET_ORDERED_ITEMS",
+        orderedItems,
     }
 }

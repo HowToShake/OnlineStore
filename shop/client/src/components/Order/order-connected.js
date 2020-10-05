@@ -4,7 +4,9 @@ import { Order } from "./order-view"
 
 const mapStateToProps = (state) => ({
     props: {
-
+        user: state.auth.user,
+        totalPrice: state.cart?.totalPrice,
+        orderedItems: state.cart?.orderedItems,
     },
 })
 

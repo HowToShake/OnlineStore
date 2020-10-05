@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { Cart } from "./cart-view"
 import { uploadItems } from "../../redux/actions/items"
-import { createUserCart, removeItemFromCart } from "../../redux/actions/cart"
+import { createUserCart, removeItemFromCart, setOrderedItems, setTotalUserPrice } from "../../redux/actions/cart"
 
 const mapStateToProps = (state) => ({
     props: {
@@ -14,6 +14,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     mapDispatchToProps: {
+        setPrice: (totalPrice) => dispatch(setTotalUserPrice(totalPrice)),
+        setOrderedItems: (orderedItems) => dispatch(setOrderedItems(orderedItems)),
         uploadItems: () => dispatch(uploadItems()),
         createUserCart: (userID) => dispatch(createUserCart(userID)),
         removeItemFromCart: (selectedItem) => dispatch(removeItemFromCart(selectedItem)),

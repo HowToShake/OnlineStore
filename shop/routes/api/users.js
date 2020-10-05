@@ -58,6 +58,8 @@ router.put("/order/:userID/:orderID", (req, res) => {
 
 router.put("/:id", (req, res) => {
     const { orderedItems, price, receiverInfo, status = "Pending" } = req.body
+    console.log('attack')
+    console.log(req.body);
     User.updateOne({
         $push: {
             orders: [
