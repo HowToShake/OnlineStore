@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid'
+
 const initialState = {
     id: "",
     order: [],
@@ -27,7 +29,7 @@ export const cartReducer = (state = initialState, action) => {
         case "CREATE_NEW_ORDER":
             return {
                 ...state,
-                id: Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) + 1,
+                id: uuidv4(),
                 userID: action.userID,
             }
         case "CLEAR_USER_CART":
