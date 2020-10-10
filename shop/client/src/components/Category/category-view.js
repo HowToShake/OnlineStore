@@ -4,6 +4,8 @@ import { ShoppingCartOutlined, LoadingOutlined } from "@ant-design/icons"
 import style from "./category-view.module.scss"
 import Meta from "antd/lib/card/Meta"
 
+const shortId = require('shortid');
+
 export const CategoryView = ({ props, mapDispatchToProps }) => {
     useEffect(() => {
         const category = window.location.href.substring(window.location.href.indexOf("?") + 1)
@@ -34,7 +36,7 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
                     <div className={style.cardContainer}>
                         {props.musicInParticularCategory.map((el, index) => {
                             if (el.band === uniqueBand) {
-                                const price = `Price: ${el.price}$ `
+                                const price = `Price: ${el.price.toFixed(2)}$ `
                                 let available = "available"
                                 if (el.amount === 0) {
                                     available = "unavailable"
@@ -51,7 +53,7 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
                                                 />
                                             }
                                             actions={[
-                                                <Button onClick={() => addItem(el)}>
+                                                <Button onClick={() => addItem(el)} >
                                                     <ShoppingCartOutlined />
                                                 </Button>,
                                             ]}
