@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { Button, Card } from "antd"
-import { DeleteOutlined, RightCircleOutlined } from "@ant-design/icons"
+import { DeleteOutlined } from "@ant-design/icons"
 import Meta from "antd/lib/card/Meta"
 import style from "./cart-view.module.scss"
-import axios from "axios"
+
 
 export const Cart = ({ props, mapDispatchToProps }) => {
     let history = useHistory()

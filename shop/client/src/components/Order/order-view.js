@@ -6,7 +6,8 @@ import phonePrefixes from "./phoneNumberPrefixes.json"
 
 const {Option} = Select;
 
-export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
+export const Order = ({ user,orderedItems, totalPrice, uniqueOrderItems }) => {
+
     const columns = [
         {
             title: "Album Name",
@@ -64,12 +65,12 @@ export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
         </Form.Item>
     )
 
-    const submitOrder = async () => {
+    const submitOrder = async (values) => {
         await axios
             .put(`http://localhost:5000/api/users/${user?._id}`, {
                 orderedItems: orderedItems,
                 price: totalPrice,
-                receiverInfo: "",
+                receiverInfo: {...values},
             })
             .then(() => console.log("success"))
             .catch((err) => console.log(err))
@@ -79,7 +80,7 @@ export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
         <div className={style.orderContainer}>
             <Table dataSource={dataSource} columns={columns} className={style.table} />
             <h2>Delivery Info</h2>
-            <Form labelCol={{ span: 7 }} wrapperCol={{ span: 10 }} layout="horizontal">
+            <Form labelCol={{ span: 7 }} wrapperCol={{ span: 10 }} layout="horizontal" onFinish={(values) => submitOrder(values)}>
                 <Form.Item
                     name="name"
                     label="Name"
