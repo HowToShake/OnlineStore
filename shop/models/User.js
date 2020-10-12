@@ -9,17 +9,20 @@ const UserSchema = new Schema({
     orders: [
         {
             status: { type: String, required: true },
-            orderedItems: [
-                {
-                },
-            ],
+            orderedItems: [{}],
             price: { type: String, required: true },
             receiverInfo: {
                 name: { type: String, required: true },
                 surname: { type: String, required: true },
                 address: { type: String, required: true },
                 phoneNumber: { type: String, required: true },
+                phoneNumberPrefix: { type: String, required: false },
                 deliveryMethod: { type: String, required: true },
+                paymentMethod: { type: String, required: true },
+                cardNumber: {type: Number, required: false},
+                cardOwnerName: {type: String, required: false},
+                validUntil: {type: Date, required: false},
+                CVC: {type: Number, required: false},
             },
         },
     ],

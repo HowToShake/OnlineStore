@@ -1,12 +1,16 @@
 import React from "react"
 import axios from "axios"
-import { Table, Input, Form, Button, Select } from "antd"
+import { Table, Input, Form, Button, Select, DatePicker } from "antd"
 import style from "./order-view.module.scss"
 import phonePrefixes from "./phoneNumberPrefixes.json"
+import moment from "moment"
 
-const {Option} = Select;
+const { Option } = Select
 
-export const Order = ({ user,orderedItems, totalPrice, uniqueOrderItems }) => {
+export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
+    const [form] = Form.useForm()
+
+    const monthFormat = "YYYY/MM"
 
     const columns = [
         {
@@ -56,8 +60,8 @@ export const Order = ({ user,orderedItems, totalPrice, uniqueOrderItems }) => {
     })
 
     const prefixSelector = (
-        <Form.Item name="prefix" noStyle>
-            <Select style={{width: 100}}>
+        <Form.Item name="phoneNumberPrefix" noStyle>
+            <Select style={{ width: 100 }}>
                 {phonePrefixes?.map((number) => (
                     <Option value={number?.dial_code} key={number.code}>{`${number.code} ${number.dial_code}`}</Option>
                 ))}
@@ -70,7 +74,19 @@ export const Order = ({ user,orderedItems, totalPrice, uniqueOrderItems }) => {
             .put(`http://localhost:5000/api/users/${user?._id}`, {
                 orderedItems: orderedItems,
                 price: totalPrice,
-                receiverInfo: {...values},
+                receiverInfo: {
+                    name: values.name,
+                    surname: values.surname,
+                    address: values.address,
+                    phoneNumber: values.phoneNumber,
+                    phoneNumberPrefix: values?.phoneNumberPrefix,
+                    deliveryMethod: values.deliveryMethod,
+                    paymentMethod: values.paymentMethod,
+                    cardNumber: values?.cardNumber,
+                    cardOwnerName: values?.cardOwnerName,
+                    validUntil: values?.validUntil,
+                    CVC: values?.CVC,
+                },
             })
             .then(() => console.log("success"))
             .catch((err) => console.log(err))
@@ -79,8 +95,8 @@ export const Order = ({ user,orderedItems, totalPrice, uniqueOrderItems }) => {
     return (
         <div className={style.orderContainer}>
             <Table dataSource={dataSource} columns={columns} className={style.table} />
-            <h2>Delivery Info</h2>
-            <Form labelCol={{ span: 7 }} wrapperCol={{ span: 10 }} layout="horizontal" onFinish={(values) => submitOrder(values)}>
+            <h2>Buyer Info</h2>
+            <Form labelCol={{ span: 7 }} wrapperCol={{ span: 10 }} layout="horizontal" onFinish={(values) => submitOrder(values)} form={form}>
                 <Form.Item
                     name="name"
                     label="Name"
@@ -134,7 +150,81 @@ export const Order = ({ user,orderedItems, totalPrice, uniqueOrderItems }) => {
                             message: "Please select Delivery Method!",
                         },
                     ]}>
-                    <Input />
+                    <Select>
+                        <Option value="UPC">UPC</Option>
+                        <Option value="DHL">DHL</Option>
+                        <Option value="FedEx">FedEx</Option>
+                    </Select>
+                </Form.Item>
+
+                <Form.Item
+                    name="paymentMethod"
+                    label="Payment Method"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please select Payment Method!",
+                        },
+                    ]}>
+                    <Select>
+                        <Option value="creditCard">Credit Card</Option>
+                        <Option value="cash">Cash</Option>
+                    </Select>
+                </Form.Item>
+                <Form.Item shouldUpdate={(prevValues, currentValues) => prevValues.paymentMethod !== currentValues.paymentMethod} noStyle>
+                    {({ getFieldValue }) => {
+                        return (
+                            getFieldValue("paymentMethod") === "creditCard" && (
+                                <>
+                                    <Form.Item
+                                        name="cardNumber"
+                                        label="Card Number"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: "Please input Card Number!",
+                                            },
+                                        ]}>
+                                        <Input />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="cardOwnerName"
+                                        label="Card Owner Name"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: "Please input Card Owner!",
+                                            },
+                                        ]}>
+                                        <Input />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="validUntil"
+                                        label="Valid Until"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: "Please input date until card is valid!",
+                                            },
+                                        ]}>
+                                        <DatePicker format={monthFormat} picker="month" />
+                                    </Form.Item>
+                                    <Form.Item
+                                        wrapperCol={{ span: 1 }}
+                                        name="CVC"
+                                        label="CVC"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: "Please input CVC Number!",
+                                            },
+                                        ]}>
+                                        <Input type="number" min={100} max={999} />
+                                    </Form.Item>
+                                </>
+                            )
+                        )
+                    }}
                 </Form.Item>
                 <Form.Item wrapperCol={{ span: 12, offset: 12 }}>
                     <Button type="primary" htmlType="submit">
