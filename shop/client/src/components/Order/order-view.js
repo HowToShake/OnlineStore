@@ -88,7 +88,11 @@ export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
                     CVC: values?.CVC,
                 },
             })
-            .then(() => console.log("success"))
+            .then((res) => {
+                if(res?.status === 200 && res?.data?.success){
+                    window.location.href = "http://localhost:3000"
+                }
+            })
             .catch((err) => console.log(err))
     }
 

@@ -72,7 +72,7 @@ router.put("/:id", (req, res) => {
             ],
         },
     })
-        .then((order) => res.json({ success: true }))
+        .then(() => res.json({ success: true }))
         .catch((err) => res.status(404).json({ success: false }))
 })
 

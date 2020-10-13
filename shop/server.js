@@ -9,7 +9,26 @@ const auth = require("./routes/api/auth")
 
 const app = express()
 
-app.use(cors())
+
+app.all(function(req, res, next) {
+    req.header("Access-Control-Allow-Origin", "*");
+    req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+const corsOptions = {
+    origin:true,
+    optionsSuccessStatus: 200,
+    preflightContinue: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: '*',
+}
+
+
+
+app.use(cors(corsOptions))
 app.use(express.json())
 
 const db = config.get("mongoURI")
