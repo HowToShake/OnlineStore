@@ -103,7 +103,7 @@ export class Admin extends React.PureComponent {
                     <div>
                         <Table dataSource={this.state?.dataToShowInTable} columns={this.columns} className={style.table} rowKey="order.orderId" />
                     </div>
-                )}{" "}
+                )}
             </>
         )
     }
