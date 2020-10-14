@@ -19,7 +19,9 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
         if (props.isAuthenticated && props.user && props.token) {
             return (
                 <>
-                    <Button style={{ border: "none", backgroundColor: "transparent" }}>Welcome back, {props.user.name}</Button>
+                    <Link to={`/user`}>
+                        <Button style={{ border: "none", backgroundColor: "transparent" }}>Welcome back, {props.user.name}</Button>
+                    </Link>
                     <Link to="/">
                         <Button icon={<HomeOutlined />}>Home</Button>
                     </Link>

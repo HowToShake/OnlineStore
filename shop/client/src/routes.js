@@ -8,6 +8,7 @@ import CategoryView from "./components/Category/category-connected"
 import Admin from "./components/Admin/admin-connected"
 import NotFoundPage from './components/404/404-view'
 import Order from './components/Order/order-connected'
+import User from './components/User/user-connected'
 
 const ROUTES = [
     { path: "/", key: "ROOT", exact: true, component: LandingPage },
@@ -52,6 +53,12 @@ const ROUTES = [
                 exact: true,
                 component: Order,
             },
+            {
+                path:"/user",
+                key: "APP_USER",
+                exact: true,
+                component: User,
+            }
         ],
     },
 ]

@@ -1,6 +1,6 @@
 import React from "react"
 import axios from "axios"
-import { Table, Input, Form, Button, Select, DatePicker } from "antd"
+import { Table, Input, Form, Button, Select, DatePicker, message } from "antd"
 import style from "./order-view.module.scss"
 import phonePrefixes from "./phoneNumberPrefixes.json"
 import moment from "moment"
@@ -89,8 +89,15 @@ export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
                 },
             })
             .then((res) => {
-                if(res?.status === 200 && res?.data?.success){
-                    window.location.href = "http://localhost:3000"
+                if (res?.status === 200 && res?.data?.success) {
+                    if (values?.paymentMethod === "bankTransfer") {
+                        message.success(`Success! Make bank transfer to our company! You'll be redirect to homepage after 3s.`)
+                    } else {
+                        message.success(`Success! Money will be taken from your account! You'll be redirect to homepage after 3s.`)
+                    }
+                    setTimeout(() => {
+                        window.location.href = "http://localhost:3000"
+                    }, 3000)
                 }
             })
             .catch((err) => console.log(err))
@@ -172,7 +179,7 @@ export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
                     ]}>
                     <Select>
                         <Option value="creditCard">Credit Card</Option>
-                        <Option value="cash">Cash</Option>
+                        <Option value="bankTransfer">Bank Transfer</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item shouldUpdate={(prevValues, currentValues) => prevValues.paymentMethod !== currentValues.paymentMethod} noStyle>

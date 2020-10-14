@@ -4,6 +4,7 @@ import { Admin } from './admin-view'
 const mapStateToProps = (state) => ({
     props: {
         role: state.auth?.user?.role,
+        
     },
 })
 
