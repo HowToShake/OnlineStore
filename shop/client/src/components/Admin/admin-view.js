@@ -66,7 +66,11 @@ export class Admin extends React.PureComponent {
     resolveOrder = async (order) => {
         await axios
             .put(`http://localhost:5000/api/users/order/${order.userId}/${order.orderId}`, {}, this.config)
-            .then(res => console.log(res))
+            .then(res => {
+                if(res?.status === 200){
+                    return message.success("You have changed status to resolved!")
+                }
+            })
             .catch((err) => console.log(err));
     }
 
