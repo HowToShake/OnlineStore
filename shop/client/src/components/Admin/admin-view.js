@@ -1,7 +1,8 @@
 import React from "react"
 import NotFoundPage from "../404/404-view"
 import axios from "axios"
-import { message, Table } from "antd"
+import { message, Table, Button } from "antd"
+import { CheckOutlined, DeleteOutlined } from "@ant-design/icons"
 import style from "./admin-view.module.scss"
 
 export class Admin extends React.PureComponent {
@@ -56,6 +57,27 @@ export class Admin extends React.PureComponent {
             .catch((err) => console.log(err))
     }
 
+    config = {
+        headers: {
+            "Content-type": "application/json",
+        },
+    }
+
+    resolveOrder = async (order) => {
+        await axios
+            .put(`http://localhost:5000/api/users/order/${order.userId}/${order.orderId}`, {}, this.config)
+            .then(res => console.log(res))
+            .catch((err) => console.log(err));
+    }
+
+    actionButtons = (order) => (
+        <>
+            <Button icon={<CheckOutlined />} onClick={() => this.resolveOrder(order)} />
+            {" | "}
+            <Button icon={<DeleteOutlined />} />
+        </>
+    )
+
     columns = [
         {
             title: "User ID",
@@ -89,9 +111,9 @@ export class Admin extends React.PureComponent {
         },
         {
             title: "Action",
-            dataIndex: "action",
-            key: "action"
-        }
+            render: (order) => this.actionButtons(order),
+            align: "center",
+        },
     ]
 
     render() {
@@ -101,7 +123,7 @@ export class Admin extends React.PureComponent {
                     <NotFoundPage />
                 ) : (
                     <div>
-                        <Table dataSource={this.state?.dataToShowInTable} columns={this.columns} className={style.table} rowKey="order.orderId" />
+                        <Table dataSource={this.state?.dataToShowInTable} columns={this.columns} className={style.table} rowKey="orderId" />
                     </div>
                 )}
             </>

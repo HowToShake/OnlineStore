@@ -35,7 +35,7 @@ export const User = ({ user, orders }) => {
 
     return (
         <div>
-            <Table dataSource={dataSource} columns={columns} className={style.table} rowKey="_id"/>
+            <Table dataSource={dataSource} columns={columns} className={style.table} rowKey="id"/>
         </div>
     )
 }
