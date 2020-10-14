@@ -5,6 +5,7 @@ const config = require("config")
 const jwt = require("jsonwebtoken")
 
 const User = require("../../models/User")
+const { db } = require("../../models/User")
 
 router.post("/", (req, res) => {
     const { name, email, password, role = "user", orders = [] } = req.body
@@ -58,8 +59,6 @@ router.put("/order/:userID/:orderID", (req, res) => {
 
 router.put("/:id", (req, res) => {
     const { orderedItems, price, receiverInfo, status = "Pending" } = req.body
-    console.log('attack')
-    console.log(req.body);
     User.updateOne({
         $push: {
             orders: [
@@ -80,6 +79,12 @@ router.delete("/:id", (req, res) => {
     User.findById(req.params.id)
         .then((item) => item.remove().then(() => res.json({ success: true })))
         .catch((err) => res.status(404).json({ success: false }))
+})
+
+router.get('/usersWithOrders', (req, res) => {
+    User.find({_id: {$ne:null}, email:{$ne:null}, orders:{$ne: null}})
+    .then((item) => res.json(item))
+    .catch(err => console.log(err));
 })
 
 module.exports = router
