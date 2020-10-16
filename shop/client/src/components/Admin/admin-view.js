@@ -74,11 +74,19 @@ export class Admin extends React.PureComponent {
             .catch((err) => console.log(err));
     }
 
+    deleteOrder = async (order) => {
+        await axios
+        .delete(`http://localhost:5000/api/users/order/${order.userId}/${order.orderId}`, {}, this.config)
+        .then(() => console.log('OK'))
+        .catch(err => console.log(err));
+        
+    }
+
     actionButtons = (order) => (
         <>
             <Button icon={<CheckOutlined />} onClick={() => this.resolveOrder(order)} />
             {" | "}
-            <Button icon={<DeleteOutlined />} />
+            <Button icon={<DeleteOutlined />} onClick={() => this.deleteOrder(order)}/>
         </>
     )
 

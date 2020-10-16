@@ -49,7 +49,7 @@ export const CategoryView = ({ props, mapDispatchToProps }) => {
                                             cover={
                                                 <img
                                                     alt="img"
-                                                    src={"xd"} //TODO add el.imgURL
+                                                    src={`${el.imgURL}`} //TODO add el.imgURL
                                                 />
                                             }
                                             actions={[
