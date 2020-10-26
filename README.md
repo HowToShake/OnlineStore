@@ -1,7 +1,7 @@
 ## This is my Bachelor's Thesis
 
 It's written in MERN stack.
-To run project it's necessary to install all dependencies via `npm start` or `yarn add`.
+To run project it's necessary to install all dependencies via `npm install` or `yarn add`.
 
 Additionaly it's necessary to create `config` folder in shop directory, and create file `default.json`.
 
