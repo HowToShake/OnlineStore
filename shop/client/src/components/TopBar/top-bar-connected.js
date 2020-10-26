@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
         user: state.auth.user,
         token: state.auth.token,
         categories: state.items.categories,
+        itemsInOrder: state.cart?.order?.length,
     },
 })
 

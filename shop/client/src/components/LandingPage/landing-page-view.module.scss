@@ -30,7 +30,7 @@ $jazz-img: url("../../assets/img/menu/Jazz.png");
         opacity: 0.9;
         border-radius: 5px;
 
-        font-size: 4rem;
+        font-size: 2rem;
         color: rgb(255, 255, 255);
 
         &:hover {
@@ -97,5 +97,20 @@ $jazz-img: url("../../assets/img/menu/Jazz.png");
         grid-row-start: 3;
         @extend .gridStyle;
         background-image: $jazz-img;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 2.5vw 30vw 2.5vw 30vw 2.5vw 30vw 2.5vw;
+        grid-template-rows: 30.5vh 30.5vh 30.5vh;
+
+        .gridStyle {
+            font-size: 1rem;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     }
 }

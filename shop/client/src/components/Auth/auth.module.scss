@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    .login_register_container {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+
+    .login {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        width: 50vw;
+        border-right: 1px solid #5559;
+    }
+
+    .loginWidth {
+        width: 50vw;
+        height: 80%;
+    }
+
+    .registerWidth {
+        width: 50vw;
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        align-items: center;
+        .login_register_container {
+            flex-flow: column nowrap;
+        }
+
+        .login {
+            border: none;
+        }
+
+        .loginWidth {
+            width: 75vw;
+            height: 80%;
+        }
+
+        .registerWidth {
+            width: 75vw;
+            height: 80%;
+        }
+    }
+}

@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
         imgURL: req.body.imgURL,
     })
 
-    newItem.save().then((item) => res.json(item))
+    newItem.save().then((item) => res.json({success: true}))
 })
 
 router.get("/", (req, res) => {

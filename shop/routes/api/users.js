@@ -52,7 +52,6 @@ router.post("/", (req, res) => {
 })
 
 router.put("/order/:userID/:orderID", (req, res) => {
-    console.log('uderzylem')
     User.updateOne({ "_id": req.params.userID, "orders._id": req.params.orderID }, { $set: { "orders.$.status": "Resolved" } })
         .then((order) => res.json({ success: true }))
         .catch((err) => res.status(404).json({ success: false }))

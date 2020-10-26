@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
-import { Button, Input, Select } from "antd"
+import { Button, Input, Select, Badge } from "antd"
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LogoutOutlined, SlidersOutlined } from "@ant-design/icons"
 import { CATEGORY_ALL } from "../../models/const"
 import style from "./top-bar-view.module.scss"
@@ -27,7 +27,9 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                     </Link>
 
                     <Link to="/cart">
-                        <Button icon={<ShoppingCartOutlined />}>Cart</Button>
+                        <Badge count={props.itemsInOrder} style={{ zIndex: "1" }}>
+                            <Button icon={<ShoppingCartOutlined />}>Cart</Button>
+                        </Badge>
                     </Link>
 
                     <Link to="/">
@@ -36,14 +38,12 @@ export const TopBar = ({ props, mapDispatchToProps }) => {
                         </Button>
                     </Link>
 
-                    {props.user.role === "admin" ? (
+                    {props.user.role === "admin" && (
                         <>
                             <Link to="/admin">
                                 <Button icon={<SlidersOutlined style={{ alignSelf: "center" }} />}>Admin</Button>
                             </Link>
                         </>
-                    ) : (
-                        <></>
                     )}
                 </>
             )
