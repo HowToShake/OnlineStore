@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { Button, Card } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 import Meta from "antd/lib/card/Meta"
 import style from "./cart-view.module.scss"
-
 
 export const Cart = ({ props, mapDispatchToProps }) => {
     let history = useHistory()
@@ -22,7 +21,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
             price += el.price
             if (index === props.cart.order.length - 1) {
                 setTotalPrice(price.toFixed(2))
-                mapDispatchToProps.setPrice(price.toFixed(2));
+                mapDispatchToProps.setPrice(price.toFixed(2))
             }
         })
 
@@ -43,7 +42,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
             })
         })
         setOrder(order)
-        mapDispatchToProps.setOrderedItems(order);
+        mapDispatchToProps.setOrderedItems(order)
     }, [props.user, props.cart.order.length])
 
     const onSubmitButtonClicked = () => {

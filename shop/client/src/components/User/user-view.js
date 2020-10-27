@@ -1,14 +1,12 @@
-import React, {useEffect, useState} from "react"
+import React, { useEffect } from "react"
 import style from "./user-view.module.scss"
 import { Table } from "antd"
 
 export const User = ({ user, orders }) => {
-
-    useEffect(() => {
-    }, [orders, user])
+    useEffect(() => {}, [orders, user])
 
     const dataSource = orders?.map((order) => {
-        return{
+        return {
             id: order._id,
             price: order.price,
             status: order.status,
@@ -35,7 +33,7 @@ export const User = ({ user, orders }) => {
 
     return (
         <div>
-            <Table dataSource={dataSource} columns={columns} className={style.table} rowKey="id"/>
+            <Table dataSource={dataSource} columns={columns} className={style.table} rowKey="id" />
         </div>
     )
 }
