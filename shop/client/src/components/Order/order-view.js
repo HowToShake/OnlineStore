@@ -1,14 +1,16 @@
 import React from "react"
 import axios from "axios"
 import { Table, Input, Form, Button, Select, DatePicker, message } from "antd"
+import { ArrowLeftOutlined } from "@ant-design/icons"
 import style from "./order-view.module.scss"
 import phonePrefixes from "./phoneNumberPrefixes.json"
-import moment from "moment"
+import { useHistory } from "react-router-dom"
 
 const { Option } = Select
 
 export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
     const [form] = Form.useForm()
+    let history = useHistory()
 
     const monthFormat = "YYYY/MM"
 
@@ -105,6 +107,10 @@ export const Order = ({ user, orderedItems, totalPrice, uniqueOrderItems }) => {
 
     return (
         <div className={style.orderContainer}>
+            <Button type="primary" danger style={{ alignItems: "center", marginLeft: "3vw" }} size="large" shape="round" onClick={() => history.push("/cart")}>
+                <ArrowLeftOutlined style={{ alignSelf: "center" }} />
+            </Button>
+
             <Table dataSource={dataSource} columns={columns} className={style.table} />
             <h2>Buyer Info</h2>
             <Form labelCol={{ span: 7 }} wrapperCol={{ span: 10 }} layout="horizontal" onFinish={(values) => submitOrder(values)} form={form}>
