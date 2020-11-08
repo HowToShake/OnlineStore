@@ -1,6 +1,6 @@
 import React from "react"
 import { Form, Input, Button } from "antd"
-import { formItemLayout } from "../../../models/const"
+import { formItemLayout } from "../../../constant/const"
 
 export const Login = ({ props, mapDispatchToProps }) => {
     const onFinish = (values) => {

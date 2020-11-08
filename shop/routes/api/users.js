@@ -81,10 +81,10 @@ router.delete("/:id", (req, res) => {
         .catch((err) => res.status(404).json({ success: false }))
 })
 
-router.get('/usersWithOrders', (req, res) => {
-    User.find({_id: {$ne:null}, email:{$ne:null}, orders:{$ne: null}})
-    .then((item) => res.json(item))
-    .catch(err => console.log(err));
+router.get("/usersWithOrders", (req, res) => {
+    User.find({ _id: { $ne: null }, email: { $ne: null }, orders: { $ne: null } })
+        .then((item) => res.json(item))
+        .catch((err) => console.log(err))
 })
 
 module.exports = router

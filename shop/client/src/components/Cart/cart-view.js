@@ -67,12 +67,7 @@ export const Cart = ({ props, mapDispatchToProps }) => {
                         return (
                             <Card
                                 key={el.albumName + index}
-                                cover={
-                                    <img
-                                        alt="img"
-                                        src={`${el.imgURL}`} //TODO add el.imgURL
-                                    />
-                                }
+                                cover={<img alt="img" src={`${el.imgURL}`} />}
                                 actions={[
                                     <Button onClick={() => mapDispatchToProps.removeItemFromCart(el)}>
                                         <DeleteOutlined />

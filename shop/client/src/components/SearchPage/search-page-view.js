@@ -2,10 +2,9 @@ import React from "react"
 import Meta from "antd/lib/card/Meta"
 import { Card, Button, message } from "antd"
 import { ShoppingCartOutlined } from "@ant-design/icons"
-import style from './search-page-view.module.scss'
+import style from "./search-page-view.module.scss"
 
 export const SearchPage = ({ props, mapDispatchToProps }) => {
-
     const addItem = (element) => {
         if (props.user) {
             mapDispatchToProps.onAddItemToCartWasPressed(element)
@@ -40,19 +39,18 @@ export const SearchPage = ({ props, mapDispatchToProps }) => {
                                     <>
                                         <Card
                                             key={el.albumName + index}
-                                            cover={
-                                                <img
-                                                    alt="img"
-                                                    src={`${el.imgURL}`} //TODO add el.imgURL
-                                                />
-                                            }
+                                            cover={<img alt="img" src={`${el.imgURL}`} />}
                                             actions={[
                                                 <Button onClick={() => addItem(el)}>
                                                     <ShoppingCartOutlined />
                                                 </Button>,
                                             ]}
                                             className={style.Card}>
-                                            <Meta key={el.albumName + index + price} title={el.albumName} description={price +` | `+available +` | `+`Category: ${el.category}`} />
+                                            <Meta
+                                                key={el.albumName + index + price}
+                                                title={el.albumName}
+                                                description={price + ` | ` + available + ` | ` + `Category: ${el.category}`}
+                                            />
                                         </Card>
                                     </>
                                 )

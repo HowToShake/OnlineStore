@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { Button, Input, Select, Badge } from "antd"
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LogoutOutlined, SlidersOutlined } from "@ant-design/icons"
-import { CATEGORY_ALL } from "../../models/const"
+import { CATEGORY_ALL } from "../../constant/const"
 import style from "./top-bar-view.module.scss"
 
 export const TopBar = ({ props, mapDispatchToProps }) => {

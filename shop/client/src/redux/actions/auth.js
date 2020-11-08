@@ -1,5 +1,5 @@
 import axios from "axios"
-import { returnErrors, clearErrors } from "./error"
+import { returnErrors } from "./error"
 
 export const loadUser = () => (dispatch, getState) => {
     dispatch({ type: "USER_LOADING" })
